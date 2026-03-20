@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bhagavad Gita · Daily Wisdom</title>
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a84c;--gold-lt:#e8c97a;--gold-dim:rgba(201,168,76,0.22);
+  --saffron:#d4621a;--saffron-lt:#e8833a;
+  --deep:#120904;--bark:#2a1608;--umber:#5c3317;
+  --parchment:#fdf3dc;--cream:#fffbf0;--warm:#f5e6c0;
+  --muted:#8a6a3a;--text:#1e1005;
+  --r:6px;
+}
+
+body{
+  font-family:'Raleway',sans-serif;font-weight:400;
+  background:radial-gradient(ellipse at 60% 0%,#e8c97a22 0%,transparent 60%),
+             radial-gradient(ellipse at 20% 100%,#d4621a18 0%,transparent 50%),
+             linear-gradient(160deg,#f0deb0 0%,#e8d49a 40%,#dfc88a 100%);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:2rem 1rem;
+}
+
+/* ═══ CARD ═══ */
+.card{
+  max-width:720px;width:100%;
+  background:var(--cream);
+  border-radius:var(--r);
+  overflow:hidden;
+  box-shadow:
+    0 1px 0 0 var(--gold-dim),
+    0 24px 80px rgba(42,22,8,0.22),
+    0 4px 16px rgba(42,22,8,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  border:1px solid var(--gold-dim);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.card.fade{opacity:0;transform:translateY(12px);}
+
+/* ═══ HEADER ═══ */
+.hdr{
+  background:linear-gradient(135deg,#100804 0%,#1e0f06 45%,#100804 100%);
+  padding:1.3rem 1.8rem 1.1rem;
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.hdr::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hdr-brand{display:flex;align-items:center;gap:.9rem;position:relative;}
+.hdr-flame{
+  width:32px;height:32px;position:relative;
+  animation:flicker 3s ease-in-out infinite;
+}
+@keyframes flicker{
+  0%,100%{filter:drop-shadow(0 0 6px #e07b39) drop-shadow(0 0 12px #c9a84c);}
+  50%{filter:drop-shadow(0 0 10px #e07b39) drop-shadow(0 0 20px #c9a84c);}
+}
+.hdr-text{}
+.hdr-eyebrow{
+  font-family:'Raleway',sans-serif;font-size:.55rem;font-weight:500;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold);opacity:.7;
+}
+.hdr-name{
+  font-family:'Philosopher',serif;font-size:1.05rem;
+  color:var(--gold-lt);letter-spacing:.04em;margin-top:.1rem;
+}
+.hdr-right{position:relative;text-align:right;}
+.hdr-date{font-size:.62rem;color:var(--gold);opacity:.55;letter-spacing:.06em;font-weight:300;}
+.hdr-day{font-family:'Philosopher',serif;font-size:.78rem;color:var(--gold-lt);opacity:.8;margin-top:.15rem;}
+
+/* ═══ IMAGE BANNER ═══ */
+.img-wrap{
+  position:relative;height:240px;overflow:hidden;
+  background:var(--deep);
+}
+.img-wrap svg{width:100%;height:100%;display:block;}
+.img-link{display:block;width:100%;height:100%;position:relative;text-decoration:none;}
+.img-link::after{
+  content:'📖 Read on Vedabase';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);
+  background:rgba(16,8,4,.75);border:1px solid var(--gold);border-radius:3px;
+  font-family:'Raleway',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-lt);
+  padding:.55rem 1.1rem;white-space:nowrap;
+  opacity:0;transition:opacity .22s ease,transform .22s ease;pointer-events:none;
+}
+.img-link:hover::after{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.img-link:hover .img-gradient{background:linear-gradient(to bottom,rgba(16,8,4,.2) 0%,rgba(16,8,4,.5) 50%,rgba(16,8,4,.92) 100%);}
+
+.img-gradient{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(16,8,4,0.3) 50%,
+    rgba(16,8,4,0.88) 100%);
+}
+.img-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.2rem 1.8rem 1.4rem;
+}
+.img-ref{
+  font-family:'Raleway',sans-serif;font-size:.58rem;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.6rem;margin-bottom:.55rem;
+}
+.img-ref::before{content:'';width:2rem;height:1px;background:var(--gold);opacity:.6;}
+.img-verse-text{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:1.22rem;color:#fff;line-height:1.52;
+  text-shadow:0 2px 16px rgba(0,0,0,.6),0 1px 4px rgba(0,0,0,.4);
+  max-width:560px;
+}
+
+/* ═══ SANSKRIT ═══ */
+.sanskrit-row{
+  background:linear-gradient(90deg,var(--warm) 0%,var(--parchment) 50%,var(--warm) 100%);
+  border-top:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim);
+  text-align:center;padding:.7rem 1.5rem;
+}
+.sanskrit-text{
+  font-family:'IM Fell English',serif;font-style:italic;
+  color:var(--umber);font-size:.95rem;letter-spacing:.03em;
+}
+
+/* ═══ CONTENT GRID ═══ */
+.grid{
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.cell{
+  padding:1.5rem 1.7rem;
+  border-right:1px solid var(--gold-dim);
+  border-bottom:1px solid var(--gold-dim);
+  transition:background .2s;
+}
+.cell:hover{background:rgba(201,168,76,0.04);}
+.cell:nth-child(even){border-right:none;}
+.cell.span{grid-column:1/-1;border-right:none;}
+.cell.no-bottom{border-bottom:none;}
+.cell.tinted{background:linear-gradient(135deg,rgba(212,98,26,0.06),rgba(201,168,76,0.05));}
+.cell.tinted:hover{background:rgba(212,98,26,0.09);}
+
+.cell-label{
+  font-family:'Philosopher',serif;font-size:.88rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:var(--saffron);margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.6rem;
+  border-bottom:1px solid var(--gold-dim);padding-bottom:.55rem;
+}
+.cell-icon{
+  width:36px;height:36px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+}
+.cell-icon svg{width:36px;height:36px;}
+.cell-body{
+  font-family:'Playfair Display',serif;
+  font-size:1.08rem;color:var(--text);line-height:1.7;
+}
+
+/* ═══ FOOTER ═══ */
+.ftr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.5rem;
+  border-top:1px solid var(--gold-dim);
+  background:linear-gradient(90deg,var(--warm),var(--cream),var(--warm));
+}
+.ftr-progress{display:flex;align-items:center;gap:.7rem;}
+.progress-bar{
+  width:80px;height:3px;background:var(--gold-dim);border-radius:2px;overflow:hidden;
+}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold));border-radius:2px;transition:width .4s ease;}
+.ftr-label{font-size:.62rem;color:var(--muted);letter-spacing:.06em;}
+.nav{display:flex;gap:.4rem;}
+.btn{
+  background:none;border:1px solid var(--gold-dim);border-radius:3px;
+  padding:.38rem .95rem;font-family:'Raleway',sans-serif;font-size:.58rem;
+  font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);cursor:pointer;transition:all .18s;
+}
+.btn:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);}
+.btn:active{transform:scale(.97);}
+
+@media(max-width:520px){
+  .grid{grid-template-columns:1fr;}
+  .cell{border-right:none!important;grid-column:auto!important;}
+  .img-wrap{height:200px;}
+  .img-verse-text{font-size:1.05rem;}
+  .hdr{flex-direction:column;align-items:flex-start;gap:.5rem;}
+  .cell-body{font-size:.95rem;}
+}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-brand">
+      <div class="hdr-flame">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="fg" cx="50%" cy="80%" r="70%">
+              <stop offset="0%" stop-color="#ffe082"/>
+              <stop offset="50%" stop-color="#e07b39"/>
+              <stop offset="100%" stop-color="#8b1a00" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="16" cy="26" rx="7" ry="4" fill="#c9a84c" opacity=".3"/>
+          <path d="M16 4 C14 9 10 11 11 17 C11 21 14 24 16 24 C18 24 21 21 21 17 C22 11 18 9 16 4Z" fill="url(#fg)"/>
+          <path d="M16 12 C15 15 13 16 13.5 19 C13.5 21 14.8 22.5 16 22.5 C17.2 22.5 18.5 21 18.5 19 C19 16 17 15 16 12Z" fill="#ffe082" opacity=".8"/>
+        </svg>
+      </div>
+      <div class="hdr-text">
+        <div class="hdr-eyebrow">Daily Wisdom</div>
+        <div class="hdr-name" id="hdr-name">Bhagavad Gita · 2.47</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div class="hdr-date" id="hdr-date"></div>
+      <div class="hdr-day" id="hdr-day"></div>
+    </div>
+  </div>
+
+  <!-- IMAGE -->
+  <div class="img-wrap" id="img-wrap">
+    <a class="img-link" id="img-link" href="https://vedabase.io/en/library/bg/2/47/" target="_blank" rel="noopener" title="Read this verse on Vedabase">
+      <div id="svg-art"></div>
+      <div class="img-gradient"></div>
+      <div class="img-caption">
+        <div class="img-ref" id="img-ref">BG 2.47</div>
+        <div class="img-verse-text" id="img-verse"></div>
+      </div>
+    </a>
+  </div>
+
+  <!-- SANSKRIT -->
+  <div class="sanskrit-row">
+    <div class="sanskrit-text" id="sanskrit"></div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+    <div class="cell">
+      <div class="cell-label">
+        <span class="cell-icon">
+          <!-- MEANING: deep indigo open book -->
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="18" fill="#4527a0"/>
+            <circle cx="18" cy="18" r="18" fill="url(#mgr)" opacity=".5"/>
+            <defs>
+              <radialGradient id="mgr" cx="30%" cy="25%" r="70%">
+                <stop offset="0%" stop-color="#7c4dff"/>
+                <stop offset="100%" stop-color="#4527a0"/>
+              </radialGradient>
+            </defs>
+            <!-- book left page -->
+            <path d="M9 11 C9 11 9 25 9 25 C9 25 13 24 18 25 L18 11 C13 10 9 11 9 11Z" fill="#fff" opacity=".95"/>
+            <!-- book right page -->
+            <path d="M27 11 C27 11 23 10 18 11 L18 25 C23 24 27 25 27 25Z" fill="#e8d5ff" opacity=".9"/>
+            <!-- spine -->
+            <rect x="17.2" y="11" width="1.6" height="14" fill="#b39ddb"/>
+            <!-- lines on left page -->
+            <line x1="11" y1="14" x2="16" y2="14" stroke="#b39ddb" stroke-width="1" opacity=".7"/>
+            <line x1="11" y1="17" x2="16" y2="17" stroke="#b39ddb" stroke-width="1" opacity=".7"/>
+            <line x1="11" y1="20" x2="16" y2="20" stroke="#b39ddb" stroke-width="1" opacity=".7"/>
+            <!-- lines on right page -->
+            <line x1="20" y1="14" x2="25" y2="14" stroke="#9575cd" stroke-width="1" opacity=".6"/>
+            <line x1="20" y1="17" x2="25" y2="17" stroke="#9575cd" stroke-width="1" opacity=".6"/>
+            <line x1="20" y1="20" x2="25" y2="20" stroke="#9575cd" stroke-width="1" opacity=".6"/>
+          </svg>
+        </span>Meaning
+      </div>
+      <div class="cell-body" id="s-meaning"></div>
+    </div>
+
+    <div class="cell tinted">
+      <div class="cell-label">
+        <span class="cell-icon">
+          <!-- INSIGHT: golden radiant sun -->
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="sgr" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#ffe57f"/>
+                <stop offset="100%" stop-color="#f57f17"/>
+              </radialGradient>
+            </defs>
+            <circle cx="18" cy="18" r="18" fill="#e65100"/>
+            <circle cx="18" cy="18" r="18" fill="url(#sgr)" opacity=".4"/>
+            <!-- rays -->
+            <line x1="18" y1="5"  x2="18" y2="8"  stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="28" x2="18" y2="31" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="5"  y1="18" x2="8"  y2="18" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="28" y1="18" x2="31" y2="18" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8.5"  y1="8.5"  x2="10.6" y2="10.6" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="25.4" y1="25.4" x2="27.5" y2="27.5" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="27.5" y1="8.5"  x2="25.4" y2="10.6" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <line x1="10.6" y1="25.4" x2="8.5"  y2="27.5" stroke="#ffe57f" stroke-width="2" stroke-linecap="round"/>
+            <!-- sun body -->
+            <circle cx="18" cy="18" r="7" fill="#ffe57f"/>
+            <circle cx="18" cy="18" r="5" fill="#fff8e1"/>
+          </svg>
+        </span>Insight
+      </div>
+      <div class="cell-body" id="s-insight"></div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-label">
+        <span class="cell-icon">
+          <!-- LIFE APPLICATION: emerald green lotus/leaf -->
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="lgr" cx="40%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#69f0ae"/>
+                <stop offset="100%" stop-color="#1b5e20"/>
+              </radialGradient>
+            </defs>
+            <circle cx="18" cy="18" r="18" fill="#2e7d32"/>
+            <circle cx="18" cy="18" r="18" fill="url(#lgr)" opacity=".45"/>
+            <!-- lotus petals -->
+            <ellipse cx="18" cy="12" rx="5" ry="8" fill="#a5d6a7" opacity=".9" transform="rotate(0,18,18)"/>
+            <ellipse cx="18" cy="12" rx="5" ry="8" fill="#81c784" opacity=".8" transform="rotate(60,18,18)"/>
+            <ellipse cx="18" cy="12" rx="5" ry="8" fill="#a5d6a7" opacity=".85" transform="rotate(120,18,18)"/>
+            <ellipse cx="18" cy="12" rx="5" ry="8" fill="#81c784" opacity=".8" transform="rotate(180,18,18)"/>
+            <ellipse cx="18" cy="12" rx="5" ry="8" fill="#a5d6a7" opacity=".85" transform="rotate(240,18,18)"/>
+            <ellipse cx="18" cy="12" rx="5" ry="8" fill="#81c784" opacity=".8" transform="rotate(300,18,18)"/>
+            <!-- centre -->
+            <circle cx="18" cy="18" r="5" fill="#ffee58"/>
+            <circle cx="18" cy="18" r="3" fill="#fff9c4"/>
+          </svg>
+        </span>Life Application
+      </div>
+      <div class="cell-body" id="s-life"></div>
+    </div>
+
+    <div class="cell tinted">
+      <div class="cell-label">
+        <span class="cell-icon">
+          <!-- PRACTICE: saffron meditation figure -->
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="pgr" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffb74d"/>
+                <stop offset="100%" stop-color="#bf360c"/>
+              </radialGradient>
+            </defs>
+            <circle cx="18" cy="18" r="18" fill="#e64a19"/>
+            <circle cx="18" cy="18" r="18" fill="url(#pgr)" opacity=".5"/>
+            <!-- aura rings -->
+            <circle cx="18" cy="18" r="13" fill="none" stroke="#ffe0b2" stroke-width=".8" opacity=".5"/>
+            <circle cx="18" cy="18" r="10" fill="none" stroke="#ffe0b2" stroke-width=".6" opacity=".4"/>
+            <!-- seated figure body -->
+            <ellipse cx="18" cy="22" rx="7" ry="5" fill="#fff3e0" opacity=".9"/>
+            <!-- legs -->
+            <ellipse cx="13" cy="24" rx="4" ry="2" fill="#ffe0b2" opacity=".85" transform="rotate(-15,13,24)"/>
+            <ellipse cx="23" cy="24" rx="4" ry="2" fill="#ffe0b2" opacity=".85" transform="rotate(15,23,24)"/>
+            <!-- head -->
+            <circle cx="18" cy="14" r="4.5" fill="#ffccbc"/>
+            <!-- crown chakra -->
+            <circle cx="18" cy="10" r="2" fill="#ea80fc" opacity=".9"/>
+            <circle cx="18" cy="10" r="1" fill="#fff"/>
+            <!-- arms outstretched -->
+            <line x1="11" y1="21" x2="8"  y2="23" stroke="#ffccbc" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="25" y1="21" x2="28" y2="23" stroke="#ffccbc" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>Practice
+      </div>
+      <div class="cell-body" id="s-practice"></div>
+    </div>
+
+    <div class="cell span no-bottom">
+      <div class="cell-label">
+        <span class="cell-icon">
+          <!-- REFLECTION: teal mirror / ripple -->
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="rgr" cx="40%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#80deea"/>
+                <stop offset="100%" stop-color="#00695c"/>
+              </radialGradient>
+            </defs>
+            <circle cx="18" cy="18" r="18" fill="#00796b"/>
+            <circle cx="18" cy="18" r="18" fill="url(#rgr)" opacity=".5"/>
+            <!-- mirror oval frame -->
+            <ellipse cx="18" cy="17" rx="9" ry="11" fill="none" stroke="#b2dfdb" stroke-width="1.5" opacity=".9"/>
+            <ellipse cx="18" cy="17" rx="7" ry="9" fill="#e0f2f1" opacity=".25"/>
+            <!-- reflection ripple lines -->
+            <ellipse cx="18" cy="22" rx="5"  ry="1.5" fill="none" stroke="#80cbc4" stroke-width="1" opacity=".7"/>
+            <ellipse cx="18" cy="24" rx="7"  ry="1.5" fill="none" stroke="#80cbc4" stroke-width=".8" opacity=".5"/>
+            <ellipse cx="18" cy="26" rx="9"  ry="1.5" fill="none" stroke="#80cbc4" stroke-width=".6" opacity=".35"/>
+            <!-- handle -->
+            <rect x="16.5" y="27" width="3" height="5" rx="1.5" fill="#b2dfdb" opacity=".8"/>
+            <!-- star sparkle inside mirror -->
+            <circle cx="18" cy="14" r="1.5" fill="#fff" opacity=".9"/>
+            <line x1="18" y1="11" x2="18" y2="12.2" stroke="#fff" stroke-width="1" opacity=".6"/>
+            <line x1="18" y1="15.8" x2="18" y2="17" stroke="#fff" stroke-width="1" opacity=".6"/>
+            <line x1="15" y1="14" x2="16.2" y2="14" stroke="#fff" stroke-width="1" opacity=".6"/>
+            <line x1="19.8" y1="14" x2="21"  y2="14" stroke="#fff" stroke-width="1" opacity=".6"/>
+          </svg>
+        </span>Reflection Question
+      </div>
+      <div class="cell-body" id="s-reflection"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="ftr">
+    <div class="ftr-progress">
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+      <div class="ftr-label" id="ftr-label">Day 1 of 365</div>
+    </div>
+    <div class="nav">
+      <button class="btn" onclick="go(-1)">← Prev</button>
+      <button class="btn" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  SVG ART THEMES — 12 unique hand-crafted scenes
+// ═══════════════════════════════════════════════════════
+const SVGS = {
+
+sunrise: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <radialGradient id="s1sky" cx="50%" cy="100%" r="100%">
+    <stop offset="0%" stop-color="#f5a623"/>
+    <stop offset="30%" stop-color="#c0392b"/>
+    <stop offset="70%" stop-color="#6b1f3e"/>
+    <stop offset="100%" stop-color="#0d0620"/>
+  </radialGradient>
+  <radialGradient id="s1sun" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fff3b0"/>
+    <stop offset="40%" stop-color="#ffd54f"/>
+    <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="s1glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#ff8c00" stop-opacity="0.5"/>
+    <stop offset="100%" stop-color="#ff8c00" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#s1sky)"/>
+<!-- stars -->
+<circle cx="80" cy="25" r="1.2" fill="#fff" opacity=".7"/><circle cx="150" cy="15" r=".8" fill="#fff" opacity=".5"/>
+<circle cx="250" cy="30" r="1" fill="#fff" opacity=".6"/><circle cx="380" cy="10" r="1.3" fill="#fff" opacity=".4"/>
+<circle cx="500" cy="22" r=".9" fill="#fff" opacity=".6"/><circle cx="620" cy="18" r="1.1" fill="#fff" opacity=".5"/>
+<circle cx="40" cy="50" r=".7" fill="#fff" opacity=".4"/><circle cx="680" cy="40" r=".8" fill="#fff" opacity=".3"/>
+<!-- glow halo -->
+<ellipse cx="360" cy="200" rx="260" ry="120" fill="url(#s1glow)"/>
+<!-- sun -->
+<circle cx="360" cy="200" r="120" fill="url(#s1sun)"/>
+<circle cx="360" cy="200" r="38" fill="#fff8dc" opacity=".95"/>
+<circle cx="360" cy="200" r="28" fill="#ffe57f"/>
+<!-- sun rays -->
+${Array.from({length:24},(_,i)=>{
+  const a=i*15, r1=46, r2=90+Math.sin(i*1.3)*20;
+  const x1=360+r1*Math.cos(a*Math.PI/180), y1=200+r1*Math.sin(a*Math.PI/180);
+  const x2=360+r2*Math.cos(a*Math.PI/180), y2=200+r2*Math.sin(a*Math.PI/180);
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ffd54f" stroke-width="${i%3===0?2:1}" opacity="${i%3===0?.6:.3}"/>`;
+}).join('')}
+<!-- horizon line -->
+<rect x="0" y="198" width="720" height="2" fill="#f5a623" opacity=".4"/>
+<!-- water reflections -->
+<rect x="0" y="200" width="720" height="40" fill="#0d0620" opacity=".7"/>
+${Array.from({length:8},(_,i)=>
+  `<ellipse cx="${200+i*45}" cy="${212+Math.sin(i)*4}" rx="${30+i*3}" ry="3" fill="#f5a623" opacity="${.1+i*.02}"/>`
+).join('')}
+<ellipse cx="360" cy="218" rx="18" ry="5" fill="#ffe57f" opacity=".5"/>
+<!-- silhouette trees -->
+<rect x="30" y="168" width="12" height="32" fill="#0d0620" opacity=".8"/>
+<polygon points="36,140 22,170 50,170" fill="#0d0620" opacity=".8"/>
+<polygon points="36,152 18,175 54,175" fill="#0d0620" opacity=".8"/>
+<rect x="660" y="172" width="10" height="28" fill="#0d0620" opacity=".8"/>
+<polygon points="665,145 651,174 679,174" fill="#0d0620" opacity=".8"/>
+<polygon points="665,158 648,178 682,178" fill="#0d0620" opacity=".8"/>
+</svg>`,
+
+lotus: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <linearGradient id="ltbg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#1a0a2e"/>
+    <stop offset="50%" stop-color="#2d1b4e"/>
+    <stop offset="100%" stop-color="#0d1f3c"/>
+  </linearGradient>
+  <radialGradient id="ltmoon" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fff9e6"/>
+    <stop offset="60%" stop-color="#ffe0a0"/>
+    <stop offset="100%" stop-color="#ffb347" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="ltwater" cx="50%" cy="0%" r="100%">
+    <stop offset="0%" stop-color="#7b2d8b" stop-opacity=".4"/>
+    <stop offset="100%" stop-color="#0d1f3c" stop-opacity=".9"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#ltbg)"/>
+<!-- moonlight -->
+<circle cx="360" cy="60" r="100" fill="url(#ltmoon)" opacity=".7"/>
+<circle cx="360" cy="60" r="30" fill="#fffde7" opacity=".95"/>
+<circle cx="360" cy="60" r="22" fill="#fff9e6"/>
+<!-- stars scattered -->
+${Array.from({length:40},()=>{
+  const x=Math.random()*720, y=Math.random()*150;
+  const r=Math.random()*.9+.3, op=Math.random()*.6+.2;
+  return `<circle cx="${x}" cy="${y}" r="${r}" fill="#e8d5ff" opacity="${op}"/>`;
+}).join('')}
+<!-- water surface -->
+<rect x="0" y="170" width="720" height="70" fill="url(#ltwater)"/>
+<rect x="0" y="170" width="720" height="2" fill="#9c4dcc" opacity=".3"/>
+<!-- moon reflection in water -->
+<ellipse cx="360" cy="200" rx="30" ry="8" fill="#ffe57f" opacity=".25"/>
+${Array.from({length:6},(_,i)=>
+  `<ellipse cx="360" cy="${185+i*5}" rx="${50+i*15}" ry="${2}" fill="#9c4dcc" opacity="${.15-i*.02}"/>`
+).join('')}
+<!-- Lotus petals - large -->
+${Array.from({length:10},(_,i)=>{
+  const a=(i*36-90)*Math.PI/180, r=55, cx=360, cy=165;
+  const px=cx+r*Math.cos(a), py=cy+r*Math.sin(a);
+  const colors=['#f48fb1','#e91e8c','#f06292','#ec407a','#f48fb1','#e91e8c','#ad1457','#f06292','#f48fb1','#ec407a'];
+  return `<ellipse cx="${px}" cy="${py}" rx="20" ry="10" fill="${colors[i]}" opacity=".85" transform="rotate(${i*36-90},${px},${py})"/>`;
+}).join('')}
+<!-- Inner petals -->
+${Array.from({length:6},(_,i)=>{
+  const a=(i*60-90)*Math.PI/180, r=30, cx=360, cy=165;
+  const px=cx+r*Math.cos(a), py=cy+r*Math.sin(a);
+  return `<ellipse cx="${px}" cy="${py}" rx="12" ry="6" fill="#f48fb1" opacity=".9" transform="rotate(${i*60-90},${px},${py})"/>`;
+}).join('')}
+<!-- Lotus centre -->
+<circle cx="360" cy="165" r="15" fill="#ffcc02"/>
+<circle cx="360" cy="165" r="9" fill="#ff8f00"/>
+<circle cx="360" cy="165" r="5" fill="#fff176"/>
+<!-- lily pads -->
+<ellipse cx="200" cy="185" rx="45" ry="15" fill="#1b5e20" opacity=".7"/>
+<ellipse cx="510" cy="192" rx="38" ry="12" fill="#1b5e20" opacity=".6"/>
+<line x1="200" y1="185" x2="220" y2="170" stroke="#2e7d32" stroke-width="1.5" opacity=".5"/>
+</svg>`,
+
+forest: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <linearGradient id="frbg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#0d2818"/>
+    <stop offset="40%" stop-color="#1a3a20"/>
+    <stop offset="100%" stop-color="#0a1e10"/>
+  </linearGradient>
+  <radialGradient id="frlight" cx="50%" cy="20%" r="60%">
+    <stop offset="0%" stop-color="#ffd54f" stop-opacity=".25"/>
+    <stop offset="100%" stop-color="#ffd54f" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#frbg)"/>
+<rect width="720" height="240" fill="url(#frlight)"/>
+<!-- light beams -->
+${Array.from({length:8},(_,i)=>`
+<line x1="${200+i*50}" y1="0" x2="${100+i*70}" y2="240" stroke="#ffd54f" stroke-width="${2+i%3}" opacity="${.04+i*.005}"/>
+`).join('')}
+<!-- tree trunks back -->
+${[60,130,200,320,420,520,620,680].map((x,i)=>
+  `<rect x="${x}" y="${60+i%3*10}" width="${8+i%3*3}" height="${180-i%3*10}" fill="#0a1a0a" opacity=".9"/>`
+).join('')}
+<!-- tree canopies back -->
+${[60,130,200,320,420,520,620,680].map((x,i)=>`
+  <ellipse cx="${x+5}" cy="${60+i%3*10}" rx="${30+i%2*15}" ry="${25+i%3*8}" fill="#1b4d2a" opacity=".8"/>
+  <ellipse cx="${x+5}" cy="${55+i%3*10}" rx="${22+i%2*10}" ry="${20+i%3*6}" fill="#2e7d32" opacity=".7"/>
+`).join('')}
+<!-- forest floor -->
+<rect x="0" y="200" width="720" height="40" fill="#071209" opacity=".9"/>
+${Array.from({length:12},(_,i)=>`
+  <ellipse cx="${i*65+20}" cy="208" rx="${18+i%3*5}" ry="6" fill="#1b5e20" opacity=".5"/>
+`).join('')}
+<!-- light particles -->
+${Array.from({length:20},()=>{
+  const x=Math.random()*720,y=Math.random()*180;
+  return `<circle cx="${x}" cy="${y}" r="${Math.random()*.8+.3}" fill="#ffd54f" opacity="${Math.random()*.3+.1}"/>`;
+}).join('')}
+<!-- central light shaft -->
+<polygon points="340,0 380,0 460,240 300,240" fill="#ffd54f" opacity=".04"/>
+<polygon points="350,0 370,0 420,240 320,240" fill="#ffd54f" opacity=".06"/>
+</svg>`,
+
+mandala: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <radialGradient id="mgbg" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#1a0800"/>
+    <stop offset="60%" stop-color="#0d0500"/>
+    <stop offset="100%" stop-color="#030200"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#mgbg)"/>
+<!-- outer rings -->
+${Array.from({length:8},(_,i)=>`
+  <circle cx="360" cy="120" r="${20+i*13}" fill="none" stroke="#c9a84c" stroke-width="${i===0?1.5:.6}" opacity="${.45-i*.05}"/>
+`).join('')}
+<!-- petal layers -->
+${Array.from({length:3},(_,ring)=>{
+  const count=8+ring*4, r=35+ring*26;
+  return Array.from({length:count},(_,i)=>{
+    const a=(i*(360/count))*Math.PI/180;
+    const px=360+r*Math.cos(a), py=120+r*Math.sin(a);
+    const colors=[['#c9a84c','#e8c97a'],['#e07b39','#f5a623'],['#9c4dcc','#ce93d8']];
+    const [c1,c2]=colors[ring];
+    return `<ellipse cx="${px}" cy="${py}" rx="${12-ring*2}" ry="${5-ring}" fill="${c1}" opacity="${.35+ring*.05}" transform="rotate(${i*(360/count)},${px},${py})"/>`;
+  }).join('');
+}).join('')}
+<!-- inner geometric star -->
+${Array.from({length:8},(_,i)=>{
+  const a1=(i*45)*Math.PI/180, a2=((i*45)+22.5)*Math.PI/180;
+  const r1=18, r2=28;
+  const x1=360+r1*Math.cos(a1),y1=120+r1*Math.sin(a1);
+  const x2=360+r2*Math.cos(a2),y2=120+r2*Math.sin(a2);
+  const x3=360+r1*Math.cos((i*45+45)*Math.PI/180),y3=120+r1*Math.sin((i*45+45)*Math.PI/180);
+  return `<polygon points="${x1},${y1} ${x2},${y2} ${x3},${y3}" fill="#c9a84c" opacity=".5"/>`;
+}).join('')}
+<!-- centre -->
+<circle cx="360" cy="120" r="14" fill="#e8c97a" opacity=".8"/>
+<circle cx="360" cy="120" r="8" fill="#fff3b0" opacity=".9"/>
+<circle cx="360" cy="120" r="4" fill="#fff"/>
+<!-- floating dots -->
+${Array.from({length:60},()=>{
+  const x=Math.random()*720, y=Math.random()*240;
+  return `<circle cx="${x}" cy="${y}" r="${Math.random()*.6+.2}" fill="#c9a84c" opacity="${Math.random()*.25+.05}"/>`;
+}).join('')}
+<!-- corner ornaments -->
+<circle cx="30" cy="30" r="15" fill="none" stroke="#c9a84c" stroke-width=".7" opacity=".3"/>
+<circle cx="690" cy="210" r="15" fill="none" stroke="#c9a84c" stroke-width=".7" opacity=".3"/>
+</svg>`,
+
+mountain: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <linearGradient id="mtbg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#0d1b3e"/>
+    <stop offset="40%" stop-color="#1a2f5c"/>
+    <stop offset="100%" stop-color="#2c1654"/>
+  </linearGradient>
+  <radialGradient id="mtstar" cx="30%" cy="20%" r="50%">
+    <stop offset="0%" stop-color="#ffd54f" stop-opacity=".2"/>
+    <stop offset="100%" stop-color="transparent"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#mtbg)"/>
+<rect width="720" height="240" fill="url(#mtstar)"/>
+<!-- stars -->
+${Array.from({length:50},()=>{
+  const x=Math.random()*720,y=Math.random()*130;
+  const r=Math.random()*.9+.3;
+  return `<circle cx="${x}" cy="${y}" r="${r}" fill="#e8d5ff" opacity="${Math.random()*.7+.2}"/>`;
+}).join('')}
+<!-- milky way band -->
+<ellipse cx="360" cy="65" rx="300" ry="25" fill="#7c4dff" opacity=".06"/>
+<!-- back mountains -->
+<polygon points="0,200 120,70 240,130 360,50 480,110 600,60 720,140 720,240 0,240" fill="#1a2460" opacity=".9"/>
+<!-- mid mountains -->
+<polygon points="0,240 80,130 160,180 280,90 400,150 500,80 620,160 720,110 720,240" fill="#0d1540" opacity=".95"/>
+<!-- snow caps -->
+<polygon points="280,90 260,115 300,115" fill="#e8eaf6" opacity=".7"/>
+<polygon points="500,80 478,110 522,110" fill="#e8eaf6" opacity=".65"/>
+<polygon points="360,50 340,80 380,80" fill="#e8eaf6" opacity=".75"/>
+<!-- foreground -->
+<rect x="0" y="210" width="720" height="30" fill="#060c24" opacity=".9"/>
+<!-- river reflection -->
+<ellipse cx="360" cy="225" rx="80" ry="8" fill="#1a237e" opacity=".4"/>
+${Array.from({length:5},(_,i)=>`
+  <ellipse cx="${300+i*25}" cy="${222+i%2*3}" rx="${12-i}" ry="2" fill="#3949ab" opacity=".25"/>
+`).join('')}
+<!-- single bright star -->
+<circle cx="220" cy="45" r="3" fill="#fff" opacity=".9"/>
+<circle cx="220" cy="45" r="6" fill="#fff" opacity=".2"/>
+<circle cx="220" cy="45" r="10" fill="#fff" opacity=".07"/>
+</svg>`,
+
+river: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <linearGradient id="rvbg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#e8f0fe"/>
+    <stop offset="40%" stop-color="#b3d4f5"/>
+    <stop offset="100%" stop-color="#7bafd4"/>
+  </linearGradient>
+  <linearGradient id="rvwater" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#90caf9"/>
+    <stop offset="100%" stop-color="#1565c0"/>
+  </linearGradient>
+  <radialGradient id="rvsun" cx="80%" cy="15%" r="40%">
+    <stop offset="0%" stop-color="#fff9c4"/>
+    <stop offset="100%" stop-color="#fff9c4" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#rvbg)"/>
+<rect width="720" height="240" fill="url(#rvsun)"/>
+<!-- sky clouds -->
+<ellipse cx="150" cy="45" rx="80" ry="22" fill="#fff" opacity=".6"/>
+<ellipse cx="190" cy="40" rx="60" ry="18" fill="#fff" opacity=".5"/>
+<ellipse cx="500" cy="55" rx="70" ry="18" fill="#fff" opacity=".5"/>
+<!-- distant ghats/hills -->
+<polygon points="0,160 100,110 200,130 350,90 500,120 650,100 720,130 720,180 0,180" fill="#a5c8a0" opacity=".6"/>
+<!-- riverbank -->
+<rect x="0" y="160" width="720" height="80" fill="url(#rvwater)"/>
+<!-- water ripples -->
+${Array.from({length:10},(_,i)=>`
+  <ellipse cx="${60+i*65}" cy="${185+i%3*8}" rx="${30+i*3}" ry="4" fill="#fff" opacity="${.1+i*.01}"/>
+`).join('')}
+<!-- boat silhouette -->
+<path d="M310 175 Q360 168 410 175 L405 185 Q360 190 315 185 Z" fill="#3e2723" opacity=".8"/>
+<line x1="360" y1="168" x2="360" y2="145" stroke="#5d4037" stroke-width="2"/>
+<polygon points="360,145 390,158 360,168" fill="#e53935" opacity=".7"/>
+<!-- temple on bank -->
+<rect x="80" y="125" width="50" height="35" fill="#bf8040" opacity=".8"/>
+<polygon points="80,125 105,100 130,125" fill="#c9a84c" opacity=".85"/>
+<rect x="98" y="138" width="15" height="22" fill="#5d3a1a" opacity=".9"/>
+<!-- marigolds on water -->
+<circle cx="200" cy="188" r="5" fill="#ff8f00"/>
+<circle cx="280" cy="195" r="4" fill="#e91e63"/>
+<circle cx="450" cy="190" r="5" fill="#ff8f00"/>
+<circle cx="540" cy="183" r="4" fill="#e91e63"/>
+</svg>`,
+
+diya: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <radialGradient id="dyabg" cx="50%" cy="60%" r="80%">
+    <stop offset="0%" stop-color="#2a0a00"/>
+    <stop offset="50%" stop-color="#1a0800"/>
+    <stop offset="100%" stop-color="#060200"/>
+  </radialGradient>
+  <radialGradient id="dyaflame" cx="50%" cy="80%" r="70%">
+    <stop offset="0%" stop-color="#fff176"/>
+    <stop offset="30%" stop-color="#ffa000"/>
+    <stop offset="70%" stop-color="#e65100" stop-opacity=".5"/>
+    <stop offset="100%" stop-color="#e65100" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="dyaglow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#ffa000" stop-opacity=".6"/>
+    <stop offset="100%" stop-color="#ffa000" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#dyabg)"/>
+<!-- atmospheric glow -->
+<ellipse cx="360" cy="170" rx="280" ry="140" fill="url(#dyaglow)"/>
+<!-- rangoli pattern on ground -->
+${Array.from({length:6},(_,i)=>{
+  const a=i*60*Math.PI/180, r=80;
+  const x=360+r*Math.cos(a), y=200+r*.4*Math.sin(a);
+  return `<ellipse cx="${x}" cy="${y}" rx="20" ry="6" fill="#c9a84c" opacity=".15" transform="rotate(${i*60},${x},${y})"/>`;
+}).join('')}
+${Array.from({length:12},(_,i)=>{
+  const a=i*30*Math.PI/180, r=50;
+  const x=360+r*Math.cos(a), y=200+r*.4*Math.sin(a);
+  return `<circle cx="${x}" cy="${y}" r="3" fill="#e07b39" opacity=".2"/>`;
+}).join('')}
+<!-- diya body -->
+<ellipse cx="360" cy="205" rx="50" ry="16" fill="#8d4a00"/>
+<ellipse cx="360" cy="202" rx="50" ry="16" fill="#bf6900"/>
+<ellipse cx="360" cy="199" rx="48" ry="14" fill="#e67e00"/>
+<path d="M310 199 Q360 190 410 199" stroke="#ffa726" stroke-width="2" fill="none" opacity=".5"/>
+<!-- oil pool -->
+<ellipse cx="360" cy="197" rx="28" ry="8" fill="#2a1600" opacity=".7"/>
+<!-- flame base -->
+<ellipse cx="360" cy="193" rx="8" ry="4" fill="#fff176" opacity=".7"/>
+<!-- main flame -->
+<path d="M360 193 C354 182 350 170 354 158 C356 152 360 148 360 148 C360 148 364 152 366 158 C370 170 366 182 360 193Z" fill="url(#dyaflame)"/>
+<!-- inner flame -->
+<path d="M360 190 C357 183 356 175 358 168 C359 164 360 162 360 162 C360 162 361 164 362 168 C364 175 363 183 360 190Z" fill="#fff9c4" opacity=".9"/>
+<!-- flame tip -->
+<ellipse cx="360" cy="150" rx="3" ry="5" fill="#fff" opacity=".8"/>
+<!-- glow halos -->
+<ellipse cx="360" cy="170" rx="30" ry="30" fill="#ffa000" opacity=".12"/>
+<ellipse cx="360" cy="170" rx="60" ry="50" fill="#ffa000" opacity=".07"/>
+<!-- small satellite diyas -->
+${[180,250,470,540].map((x,i)=>`
+  <ellipse cx="${x}" cy="${210+i%2*5}" rx="18" ry="6" fill="#e67e00" opacity=".5"/>
+  <path d="M${x} ${204+i%2*5} C${x-4} ${196+i%2*5} ${x} ${190+i%2*5} C${x} ${190+i%2*5} C${x+4} ${196+i%2*5} ${x} ${204+i%2*5}Z" fill="#ffa000" opacity=".7"/>
+`).join('')}
+<!-- floating sparks -->
+${Array.from({length:20},()=>{
+  const x=260+Math.random()*200, y=80+Math.random()*100;
+  return `<circle cx="${x}" cy="${y}" r="${Math.random()*.8+.2}" fill="#ffd54f" opacity="${Math.random()*.5+.1}"/>`;
+}).join('')}
+</svg>`,
+
+peacock: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <radialGradient id="pcbg" cx="50%" cy="50%" r="80%">
+    <stop offset="0%" stop-color="#0d2b1f"/>
+    <stop offset="100%" stop-color="#050f0a"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#pcbg)"/>
+<!-- feather fan background -->
+${Array.from({length:18},(_,i)=>{
+  const a=(-80+i*9)*Math.PI/180;
+  const x1=360, y1=220;
+  const x2=x1+180*Math.cos(a), y2=y1+180*Math.sin(a);
+  const colors=['#00695c','#00897b','#26a69a','#4db6ac','#006064','#00838f','#0097a7','#00acc1','#00838f','#006064','#26a69a','#4db6ac','#00897b','#00695c','#004d40','#006064','#0097a7','#4db6ac'];
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${colors[i]}" stroke-width="${3-i%3*.5}" opacity=".5"/>`;
+}).join('')}
+<!-- feather eyes -->
+${Array.from({length:9},(_,i)=>{
+  const a=(-70+i*18)*Math.PI/180, r=150;
+  const x=360+r*Math.cos(a), y=220+r*Math.sin(a);
+  return `
+    <circle cx="${x}" cy="${y}" r="12" fill="#1b5e20" opacity=".7"/>
+    <circle cx="${x}" cy="${y}" r="8" fill="#1565c0" opacity=".8"/>
+    <circle cx="${x}" cy="${y}" r="5" fill="#4a148c" opacity=".8"/>
+    <circle cx="${x}" cy="${y}" r="2.5" fill="#00e5ff" opacity=".9"/>
+  `;
+}).join('')}
+<!-- body -->
+<ellipse cx="360" cy="190" rx="35" ry="45" fill="#00695c" opacity=".9"/>
+<ellipse cx="360" cy="185" rx="28" ry="35" fill="#00897b"/>
+<!-- neck -->
+<ellipse cx="360" cy="145" rx="12" ry="30" fill="#1565c0"/>
+<ellipse cx="360" cy="140" rx="9" ry="22" fill="#1976d2"/>
+<!-- head -->
+<circle cx="360" cy="115" r="18" fill="#1565c0"/>
+<circle cx="360" cy="112" r="14" fill="#1976d2"/>
+<!-- crest feathers -->
+${Array.from({length:5},(_,i)=>{
+  const a=(-30+i*15)*Math.PI/180;
+  return `<line x1="360" y1="100" x2="${360+25*Math.cos(a-Math.PI/2)}" y2="${100+25*Math.sin(a-Math.PI/2)}" stroke="#00e5ff" stroke-width="1.5" opacity=".7"/>
+  <circle cx="${360+26*Math.cos(a-Math.PI/2)}" cy="${100+26*Math.sin(a-Math.PI/2)}" r="3" fill="#e0f7fa" opacity=".9"/>`;
+}).join('')}
+<!-- eye -->
+<circle cx="365" cy="112" r="5" fill="#fff"/>
+<circle cx="366" cy="112" r="3" fill="#1a237e"/>
+<circle cx="367" cy="111" r="1.2" fill="#fff"/>
+<!-- beak -->
+<polygon points="375,116 385,112 375,120" fill="#e6b800"/>
+<!-- legs -->
+<line x1="348" y1="230" x2="340" y2="245" stroke="#4caf50" stroke-width="3"/>
+<line x1="372" y1="230" x2="380" y2="245" stroke="#4caf50" stroke-width="3"/>
+<!-- grass -->
+${Array.from({length:20},(_,i)=>
+  `<line x1="${i*38+10}" y1="240" x2="${i*38+15+Math.random()*10}" y2="${215+Math.random()*10}" stroke="#2e7d32" stroke-width="${1+Math.random()}" opacity=".6"/>`
+).join('')}
+</svg>`,
+
+cosmic: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <radialGradient id="csbg" cx="50%" cy="50%" r="80%">
+    <stop offset="0%" stop-color="#0a0020"/>
+    <stop offset="50%" stop-color="#050010"/>
+    <stop offset="100%" stop-color="#000005"/>
+  </radialGradient>
+  <radialGradient id="csnebula1" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#7b1fa2" stop-opacity=".4"/>
+    <stop offset="100%" stop-color="#7b1fa2" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="csnebula2" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#1565c0" stop-opacity=".3"/>
+    <stop offset="100%" stop-color="#1565c0" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#csbg)"/>
+<!-- nebula clouds -->
+<ellipse cx="200" cy="80" rx="200" ry="100" fill="url(#csnebula1)"/>
+<ellipse cx="550" cy="150" rx="180" ry="120" fill="url(#csnebula2)"/>
+<!-- stars -->
+${Array.from({length:80},()=>{
+  const x=Math.random()*720, y=Math.random()*240;
+  const r=Math.random()*1.2+.2;
+  return `<circle cx="${x}" cy="${y}" r="${r}" fill="#e8d5ff" opacity="${Math.random()*.8+.2}"/>`;
+}).join('')}
+<!-- constellation lines -->
+<line x1="100" y1="50" x2="150" y2="80" stroke="#c9a84c" stroke-width=".5" opacity=".3"/>
+<line x1="150" y1="80" x2="120" y2="120" stroke="#c9a84c" stroke-width=".5" opacity=".3"/>
+<line x1="120" y1="120" x2="160" y2="140" stroke="#c9a84c" stroke-width=".5" opacity=".3"/>
+<circle cx="100" cy="50" r="2.5" fill="#c9a84c" opacity=".7"/>
+<circle cx="150" cy="80" r="2" fill="#c9a84c" opacity=".6"/>
+<circle cx="120" cy="120" r="2.2" fill="#c9a84c" opacity=".65"/>
+<circle cx="160" cy="140" r="1.8" fill="#c9a84c" opacity=".6"/>
+<!-- Om symbol in stars -->
+<circle cx="560" cy="80" r="2" fill="#ffd54f" opacity=".9"/>
+<circle cx="580" cy="65" r="1.5" fill="#ffd54f" opacity=".8"/>
+<circle cx="600" cy="75" r="2" fill="#ffd54f" opacity=".9"/>
+<circle cx="610" cy="95" r="1.5" fill="#ffd54f" opacity=".7"/>
+<circle cx="590" cy="108" r="2" fill="#ffd54f" opacity=".85"/>
+<line x1="560" y1="80" x2="580" y2="65" stroke="#ffd54f" stroke-width=".5" opacity=".4"/>
+<line x1="580" y1="65" x2="600" y2="75" stroke="#ffd54f" stroke-width=".5" opacity=".4"/>
+<line x1="600" y1="75" x2="610" y2="95" stroke="#ffd54f" stroke-width=".5" opacity=".4"/>
+<line x1="610" y1="95" x2="590" y2="108" stroke="#ffd54f" stroke-width=".5" opacity=".4"/>
+<!-- central cosmic eye -->
+<circle cx="360" cy="120" r="55" fill="none" stroke="#c9a84c" stroke-width=".8" opacity=".2"/>
+<circle cx="360" cy="120" r="40" fill="none" stroke="#9c4dcc" stroke-width=".6" opacity=".25"/>
+<circle cx="360" cy="120" r="25" fill="none" stroke="#e07b39" stroke-width=".7" opacity=".3"/>
+<circle cx="360" cy="120" r="14" fill="#7b1fa2" opacity=".4"/>
+<circle cx="360" cy="120" r="8" fill="#c9a84c" opacity=".5"/>
+<circle cx="360" cy="120" r="3" fill="#fff9e6"/>
+<!-- cosmic rays from centre -->
+${Array.from({length:12},(_,i)=>{
+  const a=i*30*Math.PI/180, r1=16, r2=55;
+  const x1=360+r1*Math.cos(a), y1=120+r1*Math.sin(a);
+  const x2=360+r2*Math.cos(a), y2=120+r2*Math.sin(a);
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#c9a84c" stroke-width=".6" opacity="${.2+i%3*.05}"/>`;
+}).join('')}
+</svg>`,
+
+temple: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <linearGradient id="tpbg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ff6f00"/>
+    <stop offset="30%" stop-color="#e65100"/>
+    <stop offset="70%" stop-color="#bf360c"/>
+    <stop offset="100%" stop-color="#3e1f00"/>
+  </linearGradient>
+  <radialGradient id="tpsun" cx="50%" cy="30%" r="40%">
+    <stop offset="0%" stop-color="#ffcc02" stop-opacity=".9"/>
+    <stop offset="100%" stop-color="#ffcc02" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#tpbg)"/>
+<rect width="720" height="240" fill="url(#tpsun)"/>
+<!-- sun disc -->
+<circle cx="360" cy="60" r="35" fill="#ffcc02" opacity=".9"/>
+<circle cx="360" cy="60" r="28" fill="#ffe57f"/>
+<!-- sun rays -->
+${Array.from({length:16},(_,i)=>{
+  const a=i*22.5*Math.PI/180, r1=38, r2=58;
+  const x1=360+r1*Math.cos(a), y1=60+r1*Math.sin(a);
+  const x2=360+r2*Math.cos(a), y2=60+r2*Math.sin(a);
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ffcc02" stroke-width="${i%2===0?2:1}" opacity=".6"/>`;
+}).join('')}
+<!-- temple silhouette -->
+<!-- base platform -->
+<rect x="200" y="200" width="320" height="40" fill="#1a0800" opacity=".95"/>
+<rect x="220" y="190" width="280" height="15" fill="#2a0f00" opacity=".9"/>
+<!-- main tower (shikhara) -->
+<polygon points="360,60 310,200 410,200" fill="#1a0800" opacity=".95"/>
+<!-- tower rings -->
+${Array.from({length:8},(_,i)=>{
+  const y=80+i*15, w=18+i*8;
+  return `<rect x="${360-w}" y="${y}" width="${w*2}" height="6" fill="#2a0f00" opacity=".9"/>`;
+}).join('')}
+<!-- entrance archway -->
+<rect x="340" y="165" width="40" height="35" fill="#0d0400" opacity=".95"/>
+<path d="M340 165 Q360 150 380 165" fill="#0d0400" opacity=".95"/>
+<!-- flag on top -->
+<line x1="360" y1="60" x2="360" y2="45" stroke="#bf6900" stroke-width="2"/>
+<polygon points="360,45 380,52 360,58" fill="#e65100" opacity=".8"/>
+<!-- side structures -->
+<rect x="160" y="170" width="60" height="30" fill="#1a0800" opacity=".8"/>
+<polygon points="190,150 165,172 215,172" fill="#1a0800" opacity=".8"/>
+<rect x="500" y="170" width="60" height="30" fill="#1a0800" opacity=".8"/>
+<polygon points="530,150 505,172 555,172" fill="#1a0800" opacity=".8"/>
+<!-- steps -->
+${Array.from({length:5},(_,i)=>`
+  <rect x="${270+i*4}" y="${200+i*4}" width="${180-i*8}" height="4" fill="#100600" opacity=".8"/>
+`).join('')}
+<!-- birds flying -->
+<path d="M120 80 Q125 75 130 80 Q135 75 140 80" stroke="#1a0800" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M580 65 Q585 60 590 65 Q595 60 600 65" stroke="#1a0800" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg>`,
+
+meditation: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+<defs>
+  <linearGradient id="mdbg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#e8f5e9"/>
+    <stop offset="40%" stop-color="#c8e6c9"/>
+    <stop offset="100%" stop-color="#a5d6a7"/>
+  </linearGradient>
+  <radialGradient id="mdglow" cx="50%" cy="40%" r="60%">
+    <stop offset="0%" stop-color="#fff9c4" stop-opacity=".8"/>
+    <stop offset="100%" stop-color="#fff9c4" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="720" height="240" fill="url(#mdbg)"/>
+<rect width="720" height="240" fill="url(#mdglow)"/>
+<!-- distant hills -->
+<ellipse cx="180" cy="200" rx="200" ry="60" fill="#81c784" opacity=".5"/>
+<ellipse cx="560" cy="200" rx="200" ry="60" fill="#81c784" opacity=".4"/>
+<!-- trees -->
+${[50,100,150,570,620,670].map((x,i)=>`
+  <rect x="${x}" y="${140+i%2*10}" width="8" height="${60-i%2*10}" fill="#388e3c" opacity=".6"/>
+  <ellipse cx="${x+4}" cy="${135+i%2*10}" rx="${20+i%2*5}" ry="${25+i%3*5}" fill="#43a047" opacity=".65"/>
+`).join('')}
+<!-- ground / meadow -->
+<rect x="0" y="200" width="720" height="40" fill="#66bb6a" opacity=".6"/>
+${Array.from({length:16},(_,i)=>
+  `<ellipse cx="${i*48+20}" cy="205" rx="20" ry="5" fill="#4caf50" opacity=".4"/>`
+).join('')}
+<!-- meditating figure -->
+<!-- cushion -->
+<ellipse cx="360" cy="210" rx="40" ry="10" fill="#e67e00" opacity=".7"/>
+<!-- body -->
+<ellipse cx="360" cy="185" rx="25" ry="30" fill="#e8c4a0"/>
+<!-- legs in lotus -->
+<ellipse cx="338" cy="202" rx="20" ry="8" fill="#d4a574" opacity=".8" transform="rotate(-15,338,202)"/>
+<ellipse cx="382" cy="202" rx="20" ry="8" fill="#d4a574" opacity=".8" transform="rotate(15,382,202)"/>
+<!-- arms -->
+<ellipse cx="336" cy="192" rx="12" ry="6" fill="#d4a574" opacity=".7" transform="rotate(20,336,192)"/>
+<ellipse cx="384" cy="192" rx="12" ry="6" fill="#d4a574" opacity=".7" transform="rotate(-20,384,192)"/>
+<!-- hands in mudra -->
+<circle cx="360" cy="200" r="8" fill="#d4a574" opacity=".8"/>
+<!-- head -->
+<circle cx="360" cy="162" r="20" fill="#c49060"/>
+<!-- hair / top knot -->
+<ellipse cx="360" cy="145" rx="10" ry="8" fill="#3e2010" opacity=".8"/>
+<!-- aura / chakra energy -->
+${Array.from({length:5},(_,i)=>`
+  <ellipse cx="360" cy="175" rx="${30+i*18}" ry="${20+i*12}" fill="none" stroke="#fff9c4" stroke-width="${1.5-i*.2}" opacity="${.35-i*.06}"/>
+`).join('')}
+<!-- crown chakra glow -->
+<circle cx="360" cy="145" r="8" fill="#e040fb" opacity=".3"/>
+<circle cx="360" cy="145" r="4" fill="#ea80fc" opacity=".5"/>
+<!-- floating flower petals -->
+${Array.from({length:8},()=>{
+  const x=200+Math.random()*320, y=100+Math.random()*80;
+  return `<ellipse cx="${x}" cy="${y}" rx="5" ry="3" fill="#f48fb1" opacity="${Math.random()*.4+.2}" transform="rotate(${Math.random()*360},${x},${y})"/>`;
+}).join('')}
+</svg>`
+};
+
+// ═══════════════════════════════════════════════════════
+//  VERSE DATABASE — 52 verses, all 18 chapters
+// ═══════════════════════════════════════════════════════
+const VERSES = [
+  {ref:"1.1",ch:1,v:1,theme:"temple",sanskrit:"Dharmakshetre kurukshetre samavetaa yuyutsavah",text:"In the field of righteousness, what did my sons and the sons of Pandu do, O Sanjaya?",meaning:"Every arena of life is also a field of dharma. Our conflicts are simultaneously tests of character.",insight:"The greatest battles in life are not fought with weapons but with choices between what is right and what is easy.",life:"When facing any conflict today, ask not 'how do I win?' but 'what does the right action look like here?'",practice:"Reflect on a current challenge. Write down the most honourable path available to you, however difficult.",reflection:"What is the deeper moral question hiding inside your current struggle?"},
+  {ref:"1.21",ch:1,v:21,theme:"mountain",sanskrit:"Senayor ubhayor madhye ratham sthapaya me achyuta",text:"Place my chariot between the two armies so that I may clearly see those assembled here ready to fight.",meaning:"Before acting, pause. Arjuna asks to be positioned where he can see all sides — a powerful metaphor for discernment.",insight:"Clarity requires stepping into the tension, not fleeing it. Seeing the full picture is the first act of wisdom.",life:"Before making a major decision, deliberately look at all sides — especially the sides you'd rather avoid.",practice:"In one decision today, write down the strongest argument against your current position. Feel its weight.",reflection:"Where are you avoiding a clear view of a situation because the full truth might be uncomfortable?"},
+  {ref:"2.3",ch:2,v:3,theme:"sunrise",sanskrit:"Klaibyam ma sma gamah partha, nai tat tvayy upapadyate",text:"Do not yield to this degrading impotence. It does not befit you. Shake off your faint-heartedness and arise.",meaning:"There are moments when contemplation has served its purpose and action is what the soul requires.",insight:"The call to arise is always present. Paralysis dressed as sensitivity is still paralysis.",life:"Identify one area where you have been overthinking instead of acting. Today, take the first small step.",practice:"Set a 5-minute timer and begin one thing you have postponed. Just start — don't finish, just begin.",reflection:"What noble action are you delaying under the guise of 'not being ready'?"},
+  {ref:"2.14",ch:2,v:14,theme:"river",sanskrit:"Matra-sparshas tu kaunteya shitoshna-sukha-duhkha-dah",text:"The contacts of the senses with objects cause heat and cold, pleasure and pain. They come and go and are impermanent. Endure them.",meaning:"All experiences — good and bad — are temporary. The practice is to witness them without being ruled by them.",insight:"Suffering arises not from the experience itself but from our insistence that it should be otherwise.",life:"When comfort or discomfort arises today, silently note: 'this is temporary.' Watch how this shifts your relationship to it.",practice:"Choose one pleasant and one unpleasant sensation today. Observe both with equal, gentle attention for 60 seconds.",reflection:"Which temporary discomfort are you treating as permanent, and how is that belief limiting you?"},
+  {ref:"2.17",ch:2,v:17,theme:"cosmic",sanskrit:"Avinaashi tu tad viddhi yena sarvam idam tatam",text:"That which pervades the entire body is indestructible. No one is able to destroy the imperishable soul.",meaning:"Your deepest essence cannot be diminished, damaged, or destroyed. It is woven through all of existence.",insight:"When we feel broken or lost, it is only the surface self. The witness within remains whole, always.",life:"Remind yourself today, especially in moments of self-criticism: your core self is untouched by your mistakes.",practice:"Place your hand on your heart for one minute. Breathe and sense the presence that has always been here.",reflection:"What would change in how you treat yourself if you truly believed your essence was indestructible?"},
+  {ref:"2.20",ch:2,v:20,theme:"cosmic",sanskrit:"Na jayate mriyate va kadachin",text:"The soul is never born nor does it die. It has not come into being and will not come into being. It is eternal.",meaning:"The soul exists beyond the cycle of birth and death — uncreated, indestructible, beyond all time.",insight:"Fear of death and fear of failure both loosen their grip when we identify with the eternal rather than the temporary.",life:"Approach today's challenges from the perspective of your eternal self — the part that outlasts every setback.",practice:"Sit for 5 minutes and ask: 'Who is the one watching my thoughts right now?' Rest in that awareness.",reflection:"What would you do differently today if you were fully unafraid of endings?"},
+  {ref:"2.22",ch:2,v:22,theme:"sunrise",sanskrit:"Vasamsi jirnani yatha vihaya navani grhnati naro parani",text:"Just as a person puts on new garments giving up old ones, the soul accepts new bodies, giving up old and useless ones.",meaning:"Death is a transition, not an ending. The soul moves through phases of existence as naturally as changing clothes.",insight:"Clinging to what has expired — relationships, identities, chapters of life — causes suffering. Release is grace.",life:"What old identity or role are you being invited to release so something new and truer can arrive?",practice:"Write down one identity you've outgrown. Symbolically fold it up and give yourself permission to move forward.",reflection:"What would become possible if you stopped defining yourself by who you used to be?"},
+  {ref:"2.47",ch:2,v:47,theme:"diya",sanskrit:"Karmanye vadhikaraste ma phaleshou kadachana",text:"You have a right to perform your duties, but you are not entitled to the fruits of action. Never consider yourself the cause of results.",meaning:"Act fully without clinging to outcomes. Your role is to offer your best effort; results belong to a larger intelligence.",insight:"Most anxiety comes from trying to control what we cannot. Release the outcome and the action itself becomes meditation.",life:"Focus entirely on process today. In each task, ask only: 'Am I giving my best here?' Then release the rest.",practice:"Choose one task today and complete it as an offering — not for praise or reward, but as pure love for the work.",reflection:"Where in your life are you withholding your best effort because you fear a particular result?"},
+  {ref:"2.48",ch:2,v:48,theme:"river",sanskrit:"Yogasthah kuru karmani sangam tyaktva dhananjaya",text:"Perform your duties established in Yoga, renouncing attachment. Be even-minded in success and failure — this is called Yoga.",meaning:"Yoga is equanimity in action. The Yogi acts fully while remaining undisturbed by the tides of outcome.",insight:"Balance is not achieved by avoiding extremes; it is maintained while moving through them without losing oneself.",life:"When today brings unexpected results — good or bad — practise returning to your centre rather than swinging with the news.",practice:"Each hour today, pause for 30 seconds. Notice your emotional temperature and consciously return to stillness.",reflection:"What would it feel like to give your complete best effort while being genuinely unbothered by the result?"},
+  {ref:"2.50",ch:2,v:50,theme:"lotus",sanskrit:"Buddhi-yukto jahatiha ubhe sukrita-dushkrite",text:"One engaged in devotional service transcends both good and evil deeds in this life. Therefore strive for Yoga — it is the art of all work.",meaning:"When action is aligned with wisdom, it rises above the duality of good and bad. Action becomes art.",insight:"Every craft, duty, and relationship can be elevated into spiritual practice when done with full, loving consciousness.",life:"Choose one regular daily task — washing dishes, sending emails, cooking — and do it today as if it were sacred ceremony.",practice:"Before beginning your main work today, take three slow breaths and set an inner intention: 'I dedicate this as an offering.'",reflection:"What ordinary activity in your life, if done with full presence and love, might become extraordinary?"},
+  {ref:"3.8",ch:3,v:8,theme:"forest",sanskrit:"Niyatam kuru karma tvam karma jyayo hy akarmanah",text:"Perform your obligatory duty, for action is indeed better than inaction. Even the maintenance of your body is not possible by inaction.",meaning:"Life requires participation. Withdrawal from duty is not spiritual — it is avoidance dressed in spiritual language.",insight:"The path forward is always through engagement, not around it. Presence is the prerequisite for transformation.",life:"What have you been postponing in the name of 'waiting for the right time'? That time is now.",practice:"Write your three most important responsibilities. Choose one and give it your complete focus for 90 minutes.",reflection:"Where is spiritual seeking or self-improvement becoming an excuse to avoid the work directly in front of you?"},
+  {ref:"3.16",ch:3,v:16,theme:"river",sanskrit:"Evam pravartitam chakram nanuvarttayatiha yah",text:"One who does not follow the wheel of creation set in motion lives in sin, rejoicing only in the senses.",meaning:"We are part of an interconnected web of giving and receiving. Refusing to contribute breaks the sacred cycle of life.",insight:"True fulfilment comes from what we give, not only what we receive. The giver is always more alive than the taker.",life:"Ask: What am I contributing to the lives of others, the community, the earth? Is it proportional to what I receive?",practice:"Do one act of genuine contribution today that no one will see or reward you for. Notice how it feels.",reflection:"If your life ended today, what would you wish you had given more of — and to whom?"},
+  {ref:"3.21",ch:3,v:21,theme:"temple",sanskrit:"Yad yad acharati shreshthah tat tad evetaro janah",text:"Whatever a great person does, others will follow. Whatever standard they set, the world pursues.",meaning:"Leadership is transmitted through being, not telling. The lives we live are silent teachings to all who watch.",insight:"You are always modelling — for children, colleagues, those who love you. The question is only: what are you modelling?",life:"Live today as though the person you most want to inspire is silently watching every choice you make.",practice:"Name one person who looks up to you. Write three qualities you want to consistently show through your actions.",reflection:"What values are you actually transmitting through your daily actions, versus the values you intend to transmit?"},
+  {ref:"3.27",ch:3,v:27,theme:"cosmic",sanskrit:"Prakrityaiva cha karmani kriyamanani sarvashah",text:"All actions are performed by the qualities of nature. Only the fool, deluded by ego, thinks 'I am the doer.'",meaning:"Our deeper nature, shaped by countless forces, acts through us. The ego's claim of sole authorship is an illusion.",insight:"Humility is the natural result of seeing clearly. When we release the ego's claim, gratitude and peace arrive.",life:"Today when something goes well, say silently: 'Life is acting through me.' Notice how this shifts pride.",practice:"List three accomplishments you're proud of. For each, name five forces or people that made them possible.",reflection:"How much of your identity is built on believing that you — and only you — made yourself who you are?"},
+  {ref:"4.7",ch:4,v:7,theme:"sunrise",sanskrit:"Yada yada hi dharmasya glanir bhavati bharata",text:"Whenever righteousness declines and unrighteousness rises, at that time I manifest myself to restore balance.",meaning:"The universe self-corrects. When darkness accumulates, light responds. Order restores itself through time.",insight:"We need not despair at the world's troubles. Every era of great darkness carries within it the seeds of awakening.",life:"Instead of lamenting what is broken around you, ask: 'What is my specific, humble role in the restoration?'",practice:"Name one injustice in your immediate world. Write one concrete small action you could take this week.",reflection:"Do you believe the universe has a self-correcting intelligence? How does your answer affect how you face suffering?"},
+  {ref:"4.11",ch:4,v:11,theme:"mandala",sanskrit:"Ye yatha mam prapadyante tams tathaiva bhajamy aham",text:"As all surrender unto me, I reward them accordingly. Everyone follows my path in all respects.",meaning:"The divine meets every soul exactly where they are, through whatever path they sincerely walk. All genuine seeking leads home.",insight:"No sincere longing for truth is wasted. Every path walked with authenticity is honoured by the universe.",life:"Respect others' paths even when they differ from yours. The destination is shared; the routes are many.",practice:"Today, when you encounter someone with different beliefs, practise silent acknowledgment: 'Their path is also real.'",reflection:"Are you seeking truth — or seeking confirmation that your current beliefs are already correct?"},
+  {ref:"4.18",ch:4,v:18,theme:"meditation",sanskrit:"Karmany akarma yah pasyed akarmani cha karma yah",text:"One who sees inaction in action and action in inaction is truly intelligent among humans.",meaning:"The wisest person can be fully active in the world while internally at rest — and deeply still while appearing active.",insight:"Inner peace is not the absence of activity. It is the stability that persists regardless of what the outer life demands.",life:"Notice today that you can be both active and inwardly calm. The two are not opposites — they can fully coexist.",practice:"During your busiest moment today, take three slow breaths and notice the stillness beneath the activity. Rest there.",reflection:"What would change in your relationships and productivity if you brought inner stillness to your outer action?"},
+  {ref:"4.34",ch:4,v:34,theme:"forest",sanskrit:"Tad viddhi pranipatena pariprashnena sevaya",text:"Learn the truth by approaching a spiritual master, inquiring submissively and rendering service unto them.",meaning:"Wisdom requires a posture of openness. Seek those who have lived what they teach, and receive their guidance humbly.",insight:"The ego resists being taught. Spiritual growth accelerates the moment we genuinely admit 'I don't know.'",life:"Identify someone wiser than you in an area you are developing. Approach them with a genuine question this week.",practice:"Write down three things you don't know about your own inner life. Sit in the questions without rushing to answers.",reflection:"Who are the teachers — formal or informal — who have most shaped your soul? Have you fully honoured their gift?"},
+  {ref:"5.10",ch:5,v:10,theme:"lotus",sanskrit:"Brahmanyadhaya karmani sangam tyaktva karoti yah",text:"One who acts without attachment, surrendering results unto the Supreme, is unaffected as a lotus is untouched by water.",meaning:"The lotus in muddy water is the eternal symbol: full immersion in life without being defined or consumed by it.",insight:"We can engage fully with the world — its pain, its mess, its beauty — without being swallowed by it. This is freedom.",life:"Today, participate fully in all your roles while maintaining the inner awareness: 'This is not the totality of who I am.'",practice:"Visualise a lotus leaf. See water beading off it. Then imagine your worries and judgments beading off your soul.",reflection:"What would it feel like to be fully present in your life without being defined, limited, or consumed by it?"},
+  {ref:"5.18",ch:5,v:18,theme:"peacock",sanskrit:"Vidya-vinaya-sampanne brahmane gavi hastini",text:"The wise see with equal vision a learned scholar, a cow, an elephant, a dog, and a dog-eater.",meaning:"The sage sees the same divine light in all beings, regardless of form, status, or species. All life is equally sacred.",insight:"Prejudice of any kind is a spiritual blindness. Every being you encounter today carries the same light you carry.",life:"Notice where you unconsciously rank people by status, appearance, or education. Practise seeing past the outer form.",practice:"Today, in every interaction, silently acknowledge: 'The same light that is in me is in you.'",reflection:"Who do you find it hardest to see as equally sacred — and what does healing that perception require of you?"},
+  {ref:"6.5",ch:6,v:5,theme:"mountain",sanskrit:"Uddhared atmanatmanam natmanam avasadayet",text:"Let a person elevate themselves by their own mind, not degrade themselves. The mind is both friend and enemy.",meaning:"You are simultaneously the builder and the destroyer of your destiny. The mind is the most powerful tool you have.",insight:"Mind mastery is the central project of the spiritual life. Everything else depends on it.",life:"Notice the quality of your self-talk today. Is your inner voice genuinely building you up or subtly tearing you down?",practice:"Each time you notice harsh self-talk today, pause and offer yourself the kindness you would give a beloved friend.",reflection:"If your best friend spoke to you the way your inner critic does, would you keep them in your life?"},
+  {ref:"6.17",ch:6,v:17,theme:"meditation",sanskrit:"Yukta-cheshtasya karmasu yukta-svapnavabodhasya",text:"The person who is regulated in eating, sleeping, and work can mitigate all sufferings by practising yoga.",meaning:"The spiritual life is built on a foundation of physical regularity. Discipline of body creates space for discipline of mind.",insight:"Self-mastery begins not with grand renunciation but with humble, consistent attention to sleep, food, and rest.",life:"Review your daily rhythms: Are you sleeping enough? Eating with care? Moving your body? These are your first spiritual practices.",practice:"Commit to one physical regularity today — a consistent wake time, a nourishing meal, a short walk. Keep this for one week.",reflection:"Which basic rhythm of your physical life, if regulated, would most improve your mental and spiritual wellbeing?"},
+  {ref:"6.19",ch:6,v:19,theme:"diya",sanskrit:"Yatha dipo nivata-stho nengate sopama smrita",text:"As a lamp in a windless place does not flicker, the disciplined mind of a yogi remains steady.",meaning:"The meditative mind, once trained, becomes like a steady flame — present, clear, undisturbed by the winds of circumstance.",insight:"We cannot control the winds of life. We can, through practice, become a flame that bends but never goes out.",life:"Imagine yourself as a flame today. Notice what 'winds' cause you to flicker — this is precisely where your practice lives.",practice:"Sit for 5 minutes and watch your breath. Each time your mind wanders, return without judgment. Count the returns as victories.",reflection:"What internal condition most reliably disturbs your inner steadiness — and what practice would address it?"},
+  {ref:"6.34",ch:6,v:34,theme:"river",sanskrit:"Chanchalam hi manah krishna pramathi balavad drdham",text:"The mind is restless, turbulent, obstinate and very strong. Subduing it seems more difficult than controlling the wind.",meaning:"Even Arjuna — a great warrior — acknowledges the power of the unruly mind. This is honesty, not weakness.",insight:"The first step to mastering the mind is admitting how powerful it truly is. Frustration with restlessness is progress.",life:"Stop judging yourself for a wandering mind. It is the mind's nature. The practice is returning, not not-wandering.",practice:"Today, every time you catch your mind wandering, simply count: 1, 2, 3. No judgment. No frustration. Just count.",reflection:"What would be different in your life if you had made peace with your mind's nature rather than battling it?"},
+  {ref:"7.8",ch:7,v:8,theme:"sunrise",sanskrit:"Raso ham apsu kaunteya prabhasmi shashi-suryayoh",text:"I am the taste of water, the light of the sun and moon, the syllable Om in the Vedas, the sound in ether.",meaning:"The divine is not distant — it is the very quality woven into every experience of existence.",insight:"Spiritual awakening is not an addition to life. It is a recognition of what has always been present within it.",life:"Today, taste water mindfully. See sunlight consciously. In the ordinary, practise finding the extraordinary.",practice:"Choose five simple sensory experiences today. In each, ask: 'What is the awareness that allows me to experience this?'",reflection:"Where in your ordinary life have you been walking past the sacred without recognising it?"},
+  {ref:"7.19",ch:7,v:19,theme:"forest",sanskrit:"Bahunam janmanam ante jnanavan mam prapadyate",text:"After many births and deaths, one who is truly in knowledge surrenders unto me. Such a great soul is very rare.",meaning:"True wisdom — the kind that leads to genuine surrender — often comes only after a long journey of experience and error.",insight:"We should not be in a hurry with the spiritual life. Every 'wrong turn' is actually part of the curriculum.",life:"Look back at your hardest lessons. Can you find the gift of wisdom that each difficulty ultimately delivered?",practice:"Write one sentence about your most painful chapter — and what it ultimately taught you about who you are.",reflection:"What if every difficult experience you have had was precisely preparing you for who you are becoming?"},
+  {ref:"8.5",ch:8,v:5,theme:"cosmic",sanskrit:"Anta-kale cha mam eva smaran muktva kalevaram",text:"Whoever remembers me alone at the time of death, giving up the body — that soul attains my state.",meaning:"What we carry in consciousness at life's end reflects what we have cultivated throughout our entire lives.",insight:"The quality of our dying reflects the quality of our living. What we practise in small moments, we become in our last.",life:"Ask: 'If today were my last, what would I regret not having done, said, or become?' Then do it. Say it. Be it.",practice:"Write a single sentence about what you want your life to have been about. Read it aloud. Let it guide this day.",reflection:"What are you currently practising — through your daily choices — for the person you will be at your final moment?"},
+  {ref:"9.22",ch:9,v:22,theme:"diya",sanskrit:"Ananyash chintayanto mam ye janah paryupasate",text:"For those who worship me with devotion, meditating on my form, I carry what they lack and preserve what they have.",meaning:"Sincere devotion — to truth, to the divine, to your highest self — activates a support beyond individual effort.",insight:"Surrender is not passivity. It is aligning your will with a larger intelligence. It takes genuine courage.",life:"Trust the process. Some doors that close are divine redirection. Stay devoted to what is true and good.",practice:"Write one fear or worry. Then consciously place it in larger hands — whether God, the universe, or life itself.",reflection:"Is there an area of your life where you are trying to carry alone something you were never meant to carry alone?"},
+  {ref:"9.26",ch:9,v:26,theme:"lotus",sanskrit:"Patram pushpam phalam toyam yo me bhaktya prayacchati",text:"If one offers me with love and devotion a leaf, a flower, a fruit, or water, I will accept it.",meaning:"The divine is moved not by the grandeur of the offering but by the sincerity of the heart that offers it.",insight:"You don't need to be extraordinary to be worthy of grace. A simple act of genuine love is always enough.",life:"Today, do one small thing — a kind word, a moment of gratitude, a quiet prayer — with your whole heart. That is enough.",practice:"Choose a simple offering today: a flower placed, a meal shared, a genuine thank-you. Give it with full attention.",reflection:"Where are you waiting to be 'enough' before you show up fully? What if you were already enough?"},
+  {ref:"10.8",ch:10,v:8,theme:"mandala",sanskrit:"Aham sarvasya prabhavo mattah sarvam pravartate",text:"I am the source of all spiritual and material worlds. Everything emanates from me. The wise, knowing this, engage in devotional service.",meaning:"When we recognise the divine source of all existence, we naturally move from grasping to gratitude, from fear to wonder.",insight:"Awe is a spiritual practice. When you encounter beauty, complexity, or mystery, you are meeting the source directly.",life:"Today, find three moments to be genuinely astonished — by a face, a cloud, a piece of music, or your own breath.",practice:"Sit outside or by a window for five minutes. Let whatever you see be enough. Let wonder arise without forcing it.",reflection:"When did you last feel genuine awe? What does the infrequency of that feeling tell you about how you are living?"},
+  {ref:"10.20",ch:10,v:20,theme:"meditation",sanskrit:"Aham atma gudakesha sarva-bhutasaya-sthitah",text:"I am the soul seated in everyone's heart. I am the beginning, the middle and the end of all beings.",meaning:"The same presence you search for outwardly is already seated at the centre of your own heart. It has never left.",insight:"The spiritual journey is ultimately a homecoming. We travel far only to find that what we sought was always within.",life:"Whenever you feel lost or empty today, place your hand on your heart. Remember: the source is right here.",practice:"For three minutes, breathe into your heart centre. Imagine a steady, warm light there. This is recognition, not imagination.",reflection:"What is the feeling you are ultimately seeking — in love, success, or belonging — and is it available to you right now?"},
+  {ref:"12.13",ch:12,v:13,theme:"peacock",sanskrit:"Adveshta sarva-bhutanam maitrah karuna eva cha",text:"One who is not envious but is a kind friend to all — not thinking themselves a proprietor, free from false ego — is very dear to me.",meaning:"The portrait of a truly spiritual person is simple: kind, non-envious, humble, free from the need to possess.",insight:"These are not lofty achievements — they are daily choices. Every moment offers a chance to practise each one.",life:"Today, choose one: non-envy, genuine friendliness, or consciously releasing the need to control something.",practice:"When envy arises today, transform it: 'Their success proves what I want is possible. I genuinely celebrate it.'",reflection:"Which quality most needs your attention right now: kindness, non-envy, humility, or non-possessiveness?"},
+  {ref:"12.15",ch:12,v:15,theme:"forest",sanskrit:"Yasmat nodvijate loko lokan nodvijate cha yah",text:"One by whom no one is put into difficulty, who is not disturbed by anxiety, steady in happiness and distress — such a person is very dear.",meaning:"The mature soul neither causes suffering to others nor is destabilised by life's inevitable difficulties.",insight:"True happiness is not the absence of difficulty — it is the capacity to remain rooted while difficulty passes through.",life:"Ask honestly: Do my words and actions ever unnecessarily disturb others? Am I adding to or subtracting from peace?",practice:"Choose one situation today where you could either react or remain steady. Choose steadiness. Notice what opens.",reflection:"What would it look like to be someone from whom others walk away feeling lighter and more whole?"},
+  {ref:"13.8",ch:13,v:8,theme:"temple",sanskrit:"Amanitvam adambhitvam ahimsa kshantir arjavam",text:"Humility, modesty, non-violence, tolerance, simplicity, approaching a teacher, cleanliness, constancy, self-control — these constitute knowledge.",meaning:"True knowledge is not information — it is a way of being. These qualities are themselves the embodiment of wisdom.",insight:"We often seek more information when what we need is more humility. The wisest people listen the most.",life:"Pick one quality from this verse and practise it deliberately today: humility, non-violence, simplicity, or tolerance.",practice:"In one conversation today, listen three times more than you speak. Notice what you learn when your mouth is quiet.",reflection:"Which of these qualities, if deepened, would most transform your relationships and inner life?"},
+  {ref:"13.28",ch:13,v:28,theme:"mandala",sanskrit:"Samam pashyan hi sarvatra samavasthitam ishwaram",text:"One who sees the Supreme Lord equally present in all beings — the imperishable within the perishable — truly sees.",meaning:"The spiritual vision is one of radical equality: the same divine presence looks through every pair of eyes.",insight:"Prejudice, hierarchy, and dismissal become impossible once you genuinely see the divine in every being.",life:"When you encounter someone difficult today, try silently: 'The same light that is in me is in you.' Notice what shifts.",practice:"Meditate for 5 minutes: every person you will meet today carries the same sacred presence you do.",reflection:"Who in your life is hardest to see as sacred — and what does healing that perception require of you?"},
+  {ref:"14.5",ch:14,v:5,theme:"cosmic",sanskrit:"Sattvam rajas tama iti gunah prakriti-sambhavah",text:"Goodness, passion, and ignorance — the three qualities born of material nature — bind the conditioned soul.",meaning:"Every thought, feeling, and action arises from a mixture of clarity (sattva), drive (rajas), and inertia (tamas).",insight:"Self-knowledge begins with recognising which quality is dominant in any given moment. Awareness precedes choice.",life:"Today, notice your predominant quality at different times: calm clarity, urgent desire, or heavy lethargy.",practice:"In the evening, reflect: Which quality governed most of my day? What will I consciously choose more of tomorrow?",reflection:"Which quality most regularly rules your mind — and what specific practices would cultivate more sattva?"},
+  {ref:"15.1",ch:15,v:1,theme:"forest",sanskrit:"Urdhva-mulam adhah-shakham ashvattham prahur avyayam",text:"There is an eternal tree, with its roots upward and branches below. One who knows this tree knows the Vedas.",meaning:"Existence grows from above — from consciousness downward into form. Spirit is the root; matter is the branch.",insight:"We often try to fix the branches of our lives without attending to the roots. True change begins at the level of consciousness.",life:"If your outer life feels disordered, look inward first. What belief or fear at the root level needs tending?",practice:"Draw a tree. Label the roots with your deepest beliefs. Label the branches with areas of your outer life. Are they aligned?",reflection:"What deeply held belief is the root from which most of your current life challenges are growing?"},
+  {ref:"15.15",ch:15,v:15,theme:"meditation",sanskrit:"Sarvasya chaham hridi sannivishto mattah smritir jnanam apohanam cha",text:"I am seated in everyone's heart, and from me come remembrance, knowledge, and forgetfulness.",meaning:"Memory, insight, and the mercy of forgetfulness all arise from the divine presence within. Nothing in your inner life happens without grace.",insight:"Even forgetting is a gift. The mind releases what we are ready to release. Trust the natural rhythm of inner life.",life:"What are you holding onto that might be ready to be released? What have you forgotten that is ready to be remembered?",practice:"Write for 5 minutes: 'What I am ready to release is…' and 'What I am ready to remember is…'",reflection:"What would it mean to trust that the knowledge you need will arrive exactly when you are ready for it?"},
+  {ref:"16.1",ch:16,v:1,theme:"sunrise",sanskrit:"Abhayam sattva-samsuddhir jnana-yoga-vyavasthitih",text:"Fearlessness, purity of character, cultivation of knowledge, charity, self-control, sacrifice, simplicity — these are divine qualities.",meaning:"The divine inheritance of a human life is available to all who choose it. These are not distant ideals — they are daily choices.",insight:"Fearlessness is listed first. It is the foundation on which all other virtues stand. Everything good requires it.",life:"Which of these qualities — fearlessness, simplicity, self-control, charity — would most transform your life if chosen today?",practice:"Name one small act of courage you could take today. Not a grand act — just a small true one. Then do it.",reflection:"What one quality, consistently chosen, would most clearly shift the direction of your life within one year?"},
+  {ref:"16.21",ch:16,v:21,theme:"diya",sanskrit:"Tri-vidham narakasyedam dvaram nashanam atmanah",text:"Lust, anger, and greed are the three gates to hell — destructive to the soul. Every wise person must give these up.",meaning:"These three forces, when habitually indulged, disintegrate the inner life, cloud judgment, and destroy relationships.",insight:"We need not fight these forces violently. The practice is to recognise them early, before they gain momentum.",life:"Today, notice early warning signs of craving, anger, or grasping. The sign itself is not the problem — feeding it is.",practice:"When craving, anger, or grasping arises today, pause and take 5 breaths before acting. That pause is wisdom.",reflection:"Which of these three most consistently derails your better self — and what is the habitual trigger?"},
+  {ref:"17.15",ch:17,v:15,theme:"peacock",sanskrit:"Anudvega-karam vakyam satyam priya-hitam cha yat",text:"Words that do not cause distress, that are truthful, pleasing, and beneficial — this is the austerity of speech.",meaning:"Mastering speech is one of the most accessible and impactful spiritual practices available. Words create worlds.",insight:"The test of right speech: Is it true? Is it kind? Is it necessary? If all three, speak. If not, pause.",life:"Before speaking today, especially in difficult conversations, ask: Is this true? Is it kind? Will it genuinely help?",practice:"Choose one conversation today to practise all three gates of speech: truth, kindness, helpfulness. Notice the quality of connection.",reflection:"What habit of speech — gossip, complaining, harshness — if released, would most improve your relationships?"},
+  {ref:"17.16",ch:17,v:16,theme:"mountain",sanskrit:"Manah-prasadah saumyatvam maunam atma-vinigrahah",text:"Serenity of mind, gentleness, equanimity, self-control, and purity of thought — these constitute the austerity of the mind.",meaning:"The spiritual life asks us to attend not just to our actions but to the quality of mind from which those actions arise.",insight:"A gentle mind is not a weak mind. It is a mind that has stopped fighting reality and chosen wisdom instead.",life:"Today, practise gentleness — not just in words or deeds, but in the quality of your inner self-talk and thought.",practice:"When a harsh or critical thought arises today — about yourself or another — meet it with gentle curiosity instead.",reflection:"What would a genuinely gentle inner life feel like? And what stands between you and that gentleness right now?"},
+  {ref:"18.5",ch:18,v:5,theme:"temple",sanskrit:"Yajna-dana-tapah-karma na tyajyam karyam eva tat",text:"Acts of sacrifice, charity, and penance are not to be given up but should be performed. Indeed, they purify the great souls.",meaning:"Duty, generosity, and self-discipline are not burdens — they are the very tools by which the soul is refined.",insight:"We often seek the shortcut that avoids sacrifice. But sacrifice — of time, comfort, ego — is precisely what develops greatness.",life:"Today, do one act of genuine sacrifice: give something of real value — time, money, attention — without condition.",practice:"Identify something you've been meaning to give — to a cause, a person, a purpose. Give it today, without condition.",reflection:"What would you be willing to sacrifice for something that truly matters? Have you been paying that price?"},
+  {ref:"18.20",ch:18,v:20,theme:"cosmic",sanskrit:"Sarva-bhuteshu yenaikam bhavam avyayam ikshate",text:"That knowledge by which one sees one undivided, imperishable reality in all beings — that is knowledge in goodness.",meaning:"Unity is not a philosophical concept — it is the direct perception available to the purified mind. All life is one.",insight:"Every act of compassion is a moment of correctly seeing reality. Every act of cruelty is a moment of spiritual blindness.",life:"Practise seeing oneness today: when you feel separate from someone, ask 'What do we fundamentally share?'",practice:"List 5 people you find difficult. For each, write one deep human quality you genuinely share with them.",reflection:"If you truly saw oneness in all people — friend and enemy alike — what in your life would immediately change?"},
+  {ref:"18.37",ch:18,v:37,theme:"sunrise",sanskrit:"Yat tad agre visham iva pariname amritopamam",text:"That which in the beginning may seem like poison but at the end is just like nectar — that happiness is in the mode of goodness.",meaning:"Sattvic happiness requires effort, patience, and discipline. It may not feel pleasant at first, but it deepens over time.",insight:"Short-term discomfort often leads to lasting joy. Short-term pleasure often leads to lasting emptiness. Choose wisely.",life:"Identify one worthwhile discipline — meditation, exercise, honest conversation — that is hard now but will nourish you long-term.",practice:"Do one thing today that your future self will thank you for, even if your present self resists it.",reflection:"What 'poison' in your life — a difficult practice or honest change — is actually nectar in disguise?"},
+  {ref:"18.41",ch:18,v:41,theme:"mandala",sanskrit:"Brahmanah kshatriyah vishyam shudranaam cha parantapa",text:"The duties of all humans are assigned according to qualities born of their own nature.",meaning:"Our calling comes from our deepest nature, not our background or birth. Each person carries a unique and sacred contribution.",insight:"You were born with particular gifts not for yourself alone, but for the world that needs exactly what you carry.",life:"Ask: What qualities in me feel most natural, most alive? How can they be offered more fully in my daily life?",practice:"Write your three deepest natural gifts. Then write one way each could serve something beyond yourself.",reflection:"Are you currently living in alignment with your deepest nature — and if not, what is the first small step toward that?"},
+  {ref:"18.61",ch:18,v:61,theme:"meditation",sanskrit:"Ishvarah sarva-bhutanam hrid-deshe arjuna tishthati",text:"The Supreme Lord is situated in everyone's heart and is directing the wanderings of all living entities.",meaning:"There is an inner intelligence — call it the divine, intuition, or the soul — guiding each life from within.",insight:"We are rarely as lost as we feel. Something in us always knows the next right step. The practice is listening.",life:"Today, before deciding anything, pause and listen inward before acting outward. Trust what you hear.",practice:"Sit for 3 minutes in silence. Ask your deepest self one question. Don't analyse. Just listen. Write what comes.",reflection:"When have you most clearly heard your inner guidance — and what allowed you to hear it?"},
+  {ref:"18.63",ch:18,v:63,theme:"forest",sanskrit:"Iti te jnanam akhyatam guhyad guhyataram maya",text:"Thus I have explained to you knowledge more confidential than all secrets. Deliberate on this fully, then do what you wish.",meaning:"The teaching is complete. Now comes the most important part: your own reflection, your own integration, your own choice.",insight:"Wisdom given freely becomes your own only when you live it. The real scripture is written in your choices.",life:"Of all you know to be true and right, what are you not yet fully living? Begin there. That is your practice.",practice:"Write one sentence: 'The wisdom I know but have not yet fully lived is…' Then live it for one day.",reflection:"If the Gita's entire teaching could be distilled into one quality for you to embody more fully — what would it be?"},
+  {ref:"18.65",ch:18,v:65,theme:"lotus",sanskrit:"Man-mana bhava mad-bhakto mad-yaji mam namaskuru",text:"Think of me always, be devoted to me, worship me and bow down to me. So shall you come to me, I promise you truly.",meaning:"The ultimate teaching arrives as love: you are dear. The divine calls not from distance but from intimate closeness.",insight:"All the philosophy converges here: the cosmos loves you specifically. Your life is not an accident. You are wanted here.",life:"Carry this through your day: 'I am held. I am known. I am loved.' And treat others as equally held, known, and loved.",practice:"Write a letter from your highest self to your struggling self. Begin: 'You are dear to me. Here is what I want you to know…'",reflection:"What would shift in how you live if you genuinely believed — in your bones — that you are unconditionally loved?"},
+  {ref:"18.66",ch:18,v:66,theme:"diya",sanskrit:"Sarva dharman parityajya mam ekam sharanam vraja",text:"Abandon all varieties of dharma and simply surrender unto me. I shall deliver you from all sinful reactions. Do not fear.",meaning:"The final teaching is radical grace: beyond all doing, all performing, all striving — simply rest in the arms of the divine.",insight:"The highest spiritual maturity is not a grand achievement — it is a total relaxation into trust. This is available now.",life:"In one area where you have been straining, trying, forcing — practise today the courage of genuine surrender.",practice:"Sit quietly and say aloud: 'I release my grip. I trust. I am held.' Mean it, even if only for one breath.",reflection:"What in your life most needs to be surrendered — not abandoned, but released into loving, trusting hands?"}
+];
+
+// ═══ 365-day map ═══════════════════════════════════════
+function buildYearMap() {
+  const total = VERSES.length; // 52
+  const map = [];
+  // Spread evenly with golden-ratio-like step to avoid clustering
+  const step = Math.ceil(365 / total);
+  for (let day = 1; day <= 365; day++) {
+    const idx = Math.round(((day - 1) * total) / 365) % total;
+    map.push(idx);
+  }
+  return map;
+}
+const YEAR_MAP = buildYearMap();
+
+function getDayOfYear(date) {
+  const start = new Date(date.getFullYear(), 0, 1);
+  return Math.ceil((date - start) / 86400000);
+}
+
+// ═══ State ═════════════════════════════════════════════
+const TODAY = new Date();
+let currentDay = getDayOfYear(TODAY);
+
+function getVerseForDay(day) {
+  const d = ((day - 1) % 365 + 365) % 365;
+  return VERSES[YEAR_MAP[d]];
+}
+
+function formatDate(day) {
+  const d = new Date(TODAY.getFullYear(), 0, day);
+  return d.toLocaleDateString('en-IN', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+}
+
+async function render(day, animate=true) {
+  const card = document.getElementById('card');
+  if (animate) {
+    card.classList.add('fade');
+    await new Promise(r => setTimeout(r, 380));
+  }
+
+  const v = getVerseForDay(day);
+  const dayNum = ((day - 1) % 365 + 365) % 365 + 1;
+
+  // Header
+  document.getElementById('hdr-name').textContent = `Bhagavad Gita · ${v.ref}`;
+  document.getElementById('hdr-date').textContent = formatDate(day);
+  document.getElementById('hdr-day').textContent = `Day ${dayNum} of 365`;
+
+  // Image
+  document.getElementById('svg-art').innerHTML = SVGS[v.theme] || SVGS.sunrise;
+  document.getElementById('img-ref').textContent = `BG ${v.ref}`;
+  document.getElementById('img-link').href = `https://vedabase.io/en/library/bg/${v.ch}/${v.v}/`;
+  const shortVerse = v.text.length > 100 ? v.text.substring(0, 97) + '…' : v.text;
+  document.getElementById('img-verse').textContent = shortVerse;
+
+  // Sanskrit
+  document.getElementById('sanskrit').textContent = v.sanskrit;
+
+  // Sections
+  document.getElementById('s-meaning').textContent = v.meaning;
+  document.getElementById('s-insight').textContent = v.insight;
+  document.getElementById('s-life').textContent = v.life;
+  document.getElementById('s-practice').textContent = v.practice;
+  document.getElementById('s-reflection').textContent = v.reflection;
+
+  // Progress bar
+  document.getElementById('prog-fill').style.width = `${(dayNum / 365 * 100)}%`;
+  document.getElementById('ftr-label').textContent = `Day ${dayNum} of 365`;
+
+  if (animate) {
+    card.classList.remove('fade');
+  }
+}
+
+function go(dir) {
+  currentDay += dir;
+  render(currentDay);
+}
+
+// Init
+render(currentDay, false);
+</script>
+</body>
+</html>

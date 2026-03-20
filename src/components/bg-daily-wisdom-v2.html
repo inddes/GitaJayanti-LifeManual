@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BG Daily Wisdom</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a84c;--gold-light:#e8c97a;--gold-dim:rgba(201,168,76,0.25);
+  --deep:#1a120b;--saffron:#e07b39;--saffron-dim:rgba(224,123,57,0.12);
+  --cream:#fdf6e3;--muted:#8b7355;--white:#fffdf7;
+  --card-bg:linear-gradient(160deg,#fffdf5 0%,#fdf0d5 100%);
+}
+body{font-family:'Lato',sans-serif;background:linear-gradient(135deg,#f5e6c8 0%,#ede0c4 50%,#e8d5a8 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem 1rem;}
+
+.widget{
+  max-width:700px;width:100%;
+  background:var(--white);
+  border-radius:6px;
+  box-shadow:0 8px 40px rgba(90,50,10,0.18),0 2px 8px rgba(90,50,10,0.1),0 0 0 1px var(--gold-dim);
+  overflow:hidden;
+}
+
+/* ── HEADER ── */
+.hdr{
+  background:linear-gradient(135deg,#1e1208 0%,#2e1c0c 50%,#1e1208 100%);
+  padding:1.2rem 1.8rem 1rem;display:flex;align-items:center;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.hdr::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,168,76,0.08) 0%,transparent 70%);pointer-events:none;}
+.hdr-left{display:flex;align-items:center;gap:.8rem;}
+.hdr-sun{font-size:1.8rem;animation:rotateSun 20s linear infinite;}
+@keyframes rotateSun{from{filter:hue-rotate(0deg)}to{filter:hue-rotate(40deg)}}
+.hdr-text{}
+.hdr-eyebrow{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);opacity:.75;font-weight:300;}
+.hdr-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold-light);letter-spacing:.06em;margin-top:.1rem;}
+.hdr-date{font-size:.68rem;color:var(--gold);opacity:.6;letter-spacing:.06em;text-align:right;}
+
+/* ── IMAGE ── */
+.img-wrap{position:relative;width:100%;height:220px;overflow:hidden;background:#1a120b;}
+.verse-img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 30%,rgba(20,10,0,0.82) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:1.4rem 1.6rem 1.2rem;
+}
+.img-ref{
+  font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.22em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;
+}
+.img-ref::before{content:'';height:1px;width:1.5rem;background:var(--gold);opacity:.6;}
+.img-verse{
+  font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-style:italic;font-weight:400;
+  color:#fff;line-height:1.5;text-shadow:0 2px 8px rgba(0,0,0,0.5);
+}
+.img-loading{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1e1208,#2e1c0c);gap:.8rem;
+}
+.img-loading .spinner{
+  width:36px;height:36px;border:2px solid var(--gold-dim);border-top-color:var(--gold);
+  border-radius:50%;animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.img-loading p{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;color:var(--gold);opacity:.7;}
+.img-svg-wrap{width:100%;height:100%;}
+.img-svg-wrap svg{width:100%;height:100%;}
+
+/* ── SANSKRIT ── */
+.sanskrit-bar{
+  background:linear-gradient(90deg,#f8f0dc,#fdf6e3,#f8f0dc);
+  border-top:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim);
+  text-align:center;padding:.65rem 1.5rem;
+}
+.sanskrit-text{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:.95rem;letter-spacing:.04em;}
+
+/* ── SECTIONS ── */
+.sections{display:grid;grid-template-columns:1fr 1fr;}
+.sec{
+  padding:1.1rem 1.4rem;border-right:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim);
+  transition:background .2s;
+}
+.sec:hover{background:rgba(201,168,76,0.04);}
+.sec:nth-child(even){border-right:none;}
+.sec.full{grid-column:1/-1;border-right:none;}
+.sec.last-row{border-bottom:none;}
+.sec-label{
+  font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--saffron);margin-bottom:.45rem;display:flex;align-items:center;gap:.35rem;
+}
+.sec-icon{font-size:.9rem;}
+.sec-body{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--deep);line-height:1.58;}
+.sec.accent{background:linear-gradient(135deg,rgba(224,123,57,0.06),rgba(201,168,76,0.05));}
+
+/* ── FOOTER ── */
+.ftr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 1.4rem;border-top:1px solid var(--gold-dim);
+  background:rgba(253,246,227,0.6);
+}
+.ftr-info{font-size:.68rem;color:var(--muted);letter-spacing:.05em;}
+.ftr-nav{display:flex;gap:.4rem;}
+.btn{
+  background:none;border:1px solid var(--gold-dim);border-radius:3px;
+  padding:.35rem .9rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;
+  color:var(--gold);cursor:pointer;transition:all .2s;
+}
+.btn:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);}
+.btn:active{transform:scale(.97);}
+
+/* fade transition */
+.widget-inner{transition:opacity .35s ease,transform .35s ease;}
+.widget-inner.fade{opacity:0;transform:translateY(8px);}
+
+@media(max-width:500px){
+  .sections{grid-template-columns:1fr;}
+  .sec{border-right:none!important;grid-column:auto!important;}
+  .sec.last-row,.sec.full{border-bottom:none;}
+  .img-wrap{height:180px;}
+  .hdr{flex-direction:column;align-items:flex-start;gap:.4rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="widget">
+  <div class="widget-inner" id="wi">
+
+    <div class="hdr">
+      <div class="hdr-left">
+        <span class="hdr-sun">🌅</span>
+        <div class="hdr-text">
+          <div class="hdr-eyebrow">Daily Wisdom</div>
+          <div class="hdr-title" id="hdr-title">Bhagavad Gita</div>
+        </div>
+      </div>
+      <div class="hdr-date" id="hdr-date"></div>
+    </div>
+
+    <div class="img-wrap" id="img-wrap">
+      <div class="img-loading" id="img-loading">
+        <div class="spinner"></div>
+        <p>Manifesting wisdom…</p>
+      </div>
+      <div id="img-content" style="display:none;width:100%;height:100%;position:relative;">
+        <div class="img-svg-wrap" id="svg-container"></div>
+        <div class="img-overlay">
+          <div class="img-ref" id="img-ref">BG 2.47</div>
+          <div class="img-verse" id="img-verse"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sanskrit-bar">
+      <div class="sanskrit-text" id="sanskrit"></div>
+    </div>
+
+    <div class="sections">
+      <div class="sec">
+        <div class="sec-label"><span class="sec-icon">📖</span>Meaning</div>
+        <div class="sec-body" id="s-meaning"></div>
+      </div>
+      <div class="sec accent">
+        <div class="sec-label"><span class="sec-icon">💡</span>Insight</div>
+        <div class="sec-body" id="s-insight"></div>
+      </div>
+      <div class="sec">
+        <div class="sec-label"><span class="sec-icon">🌿</span>Life Application</div>
+        <div class="sec-body" id="s-life"></div>
+      </div>
+      <div class="sec accent">
+        <div class="sec-label"><span class="sec-icon">🧘</span>Practice</div>
+        <div class="sec-body" id="s-practice"></div>
+      </div>
+      <div class="sec full last-row" style="border-bottom:none;">
+        <div class="sec-label"><span class="sec-icon">🪞</span>Reflection Question</div>
+        <div class="sec-body" id="s-reflection"></div>
+      </div>
+    </div>
+
+    <div class="ftr">
+      <div class="ftr-info" id="ftr-info">Day 1 of 365</div>
+      <div class="ftr-nav">
+        <button class="btn" onclick="go(-1)">← Prev</button>
+        <button class="btn" onclick="go(1)">Next →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── 365 Verses mapped to each day ──────────────────────────────────────────
+// The Bhagavad Gita has 18 chapters, 700 verses total.
+// We define 52 unique verse objects covering all major themes,
+// then map all 365 days using a deterministic spread.
+
+const VERSES = [
+  // Ch1
+  {ref:"1.1",ch:1,v:1,sanskrit:"Dhritarashtra uvacha: Dharmakshetre kurukshetre",text:"In the field of righteousness, Kurukshetra, assembled to fight, what did my sons and the sons of Pandu do?",meaning:"The battlefield is also a field of dharma. Every conflict in life is simultaneously a moral and spiritual test.",insight:"Our greatest struggles are not just external. They are always invitations to discover who we truly are.",life:"When facing conflict, ask not just 'how do I win?' but 'what does the right action look like here?'",practice:"Reflect on a current challenge. Write down the dharmic (righteous) choice available to you, however difficult.",reflection:"What is the deeper moral question hiding inside your current struggle?"},
+  {ref:"1.21",ch:1,v:21,sanskrit:"Senayor ubhayor madhye ratham sthapaya me achyuta",text:"Place my chariot between the two armies, O Achyuta, so that I may see those assembled here ready to fight.",meaning:"Before acting, pause. Arjuna asks to be positioned where he can see clearly — a powerful metaphor for discernment.",insight:"Clarity requires stepping into the centre of the tension, not avoiding it. Seeing the full picture is the first act of wisdom.",life:"Before making a major decision, deliberately look at all sides — especially the sides you'd rather not see.",practice:"In one decision today, write down the strongest argument for the opposite of what you currently believe.",reflection:"Where are you avoiding a clear view of a situation because the truth might be uncomfortable?"},
+  // Ch2
+  {ref:"2.3",ch:2,v:3,sanskrit:"Klaibyam ma sma gamah partha, nai tat tvayy upapadyate",text:"Do not yield to impotence, O Arjuna. It does not befit you. Shake off your faint-heartedness and arise.",meaning:"Krishna calls Arjuna away from paralysis. There are moments when contemplation has served its purpose and action is what's needed.",insight:"The call to arise is always present. Paralysis dressed as sensitivity is still paralysis.",life:"Identify one area where you have been overthinking instead of acting. Today, take the smallest possible first step.",practice:"Set a 5-minute timer and do one thing you have been postponing. Just start — don't finish, just start.",reflection:"What noble action are you delaying under the guise of 'not being ready'?"},
+  {ref:"2.14",ch:2,v:14,sanskrit:"Matra-sparshas tu kaunteya, shitoshna-sukha-duhkha-dah",text:"The contacts of the senses with their objects, which cause heat and cold, pleasure and pain, come and go and are impermanent. Endure them.",meaning:"All sensory experiences — good and bad — are temporary. The practice is to witness them without being ruled by them.",insight:"Suffering often comes not from the experience itself but from our insistence that it should be otherwise.",life:"When comfort or discomfort arises today, silently note: 'this is temporary.' Watch how this changes your relationship to it.",practice:"Choose one pleasant and one unpleasant sensation today. Observe both with equal, gentle attention for 60 seconds each.",reflection:"Which temporary discomfort are you treating as permanent, and how is that belief limiting you?"},
+  {ref:"2.17",ch:2,v:17,sanskrit:"Avinaashi tu tad viddhi yena sarvam idam tatam",text:"That which pervades the entire body is indestructible. No one is able to destroy the imperishable soul.",meaning:"Your deepest essence cannot be diminished, damaged, or destroyed. It is woven through all of existence.",insight:"When we feel broken or lost, it is only the surface self. The witness within remains whole, always.",life:"Remind yourself today, especially in moments of self-criticism: your core self is untouched by your mistakes.",practice:"Place your hand on your heart for one minute. Breathe and sense the presence that has been here since before your earliest memory.",reflection:"What would change in how you treat yourself if you truly believed your essence was indestructible?"},
+  {ref:"2.19",ch:2,v:19,sanskrit:"Ya enam vetti hantaram, yas chainam manyate hatam",text:"Neither the one who thinks it slays nor the one who thinks it is slain understands. The soul neither slays nor is slain.",meaning:"Violence and death operate only at the level of form. The true self is beyond both giving and receiving harm.",insight:"Many of our conflicts are rooted in a mistaken identity — believing we are only this body and personality.",life:"When you feel attacked or diminished today, remember: what is truly you cannot be reduced by another's words or actions.",practice:"In a moment of criticism or conflict today, breathe and internally affirm: 'My true self is untouched by this.'",reflection:"How would your responses to conflict change if you were fully anchored in who you really are?"},
+  {ref:"2.20",ch:2,v:20,sanskrit:"Na jayate mriyate va kadachin",text:"The soul is never born nor dies at any time. It has not come into being and will not come into being. It is unborn, eternal, ever-existing.",meaning:"The soul exists beyond the cycle of birth and death. It was never created and can never be destroyed.",insight:"Fear of death and fear of failure both loosen their grip when you identify with the eternal rather than the temporary.",life:"Approach today's challenges from the perspective of your eternal self — the part that outlasts every setback.",practice:"Sit for 5 minutes and ask: 'Who is the one watching my thoughts right now?' Rest in that awareness.",reflection:"What would you do differently today if you were fully unafraid of endings?"},
+  {ref:"2.22",ch:2,v:22,sanskrit:"Vasamsi jirnani yatha vihaya navani grhnati naro parani",text:"Just as a person puts on new garments, giving up old ones, the soul accepts new material bodies, giving up the old and useless ones.",meaning:"Death is a transition, not an ending. The soul moves from one phase of existence to the next as naturally as changing clothes.",insight:"Clinging to what has expired — relationships, identities, chapters of life — causes suffering. Natural transitions are grace.",life:"What old 'garment' — habit, role, belief — are you being invited to release so something new can arrive?",practice:"Write down one identity or label you've outgrown. Symbolically 'fold it up' and give yourself permission to move forward.",reflection:"What would become possible if you stopped defining yourself by who you used to be?"},
+  {ref:"2.23",ch:2,v:23,sanskrit:"Nainam chindanti shastrani, nainam dahati pavakah",text:"The soul can never be cut by any weapon, nor burned by fire, nor moistened by water, nor withered by the wind.",meaning:"The deepest you is beyond all forms of harm. The elements themselves cannot touch the essence of who you are.",insight:"True invulnerability is not a hard shell — it is the recognition of what you truly are, which cannot be threatened.",life:"When you feel wounded today, ask: is this touching my essence, or only the surface? Practice responding from the deeper layer.",practice:"On paper, draw a small flame. Around it, write: weapons, fire, water, wind. Then write in the centre: 'I am this.'",reflection:"What would you risk if you knew your deepest self was absolutely safe?"},
+  {ref:"2.47",ch:2,v:47,sanskrit:"Karmanye vadhikaraste, ma phaleshou kadachana",text:"You have a right to perform your actions, but you are not entitled to the fruits of action. Never consider yourself the cause of results, nor be attached to inaction.",meaning:"Act fully, without clinging to outcomes. Your job is the effort; results belong to the larger intelligence of life.",insight:"Most anxiety comes from trying to control what we cannot. Release the outcome and the action itself becomes meditation.",life:"Focus entirely on process today. In each task, ask: 'Am I giving my best here?' and release concern about the result.",practice:"Choose one task today and complete it as an offering — not for praise or reward, but as an act of love for the work itself.",reflection:"Where in your life are you withholding your best effort because you're afraid of a particular result?"},
+  {ref:"2.48",ch:2,v:48,sanskrit:"Yogasthah kuru karmani, sangam tyaktva dhananjaya",text:"Perform your duties established in Yoga, renouncing attachment. Be even-minded in success and failure, for evenness of mind is called Yoga.",meaning:"Yoga is not a posture — it is equanimity in action. The Yogi acts fully while remaining undisturbed by the tides of outcome.",insight:"Balance is not achieved by avoiding extremes; it is maintained while moving through them.",life:"When today brings unexpected results — good or bad — practice returning to your centre rather than swinging with the news.",practice:"Each hour today, pause for 30 seconds. Notice your emotional temperature and consciously return to baseline.",reflection:"What would it feel like to give your complete best effort while being genuinely unbothered by the result?"},
+  {ref:"2.50",ch:2,v:50,sanskrit:"Buddhi-yukto jahatiha ubhe sukrita-dushkrite",text:"One who engages in devotional service in this life transcends good and evil. Therefore, strive for Yoga. Yoga is the art of all work.",meaning:"When action is aligned with wisdom, it rises above the duality of good and bad outcomes. Action becomes art.",insight:"Every craft, every duty, every relationship can be elevated into a spiritual practice when done with full consciousness.",life:"Choose one regular daily task — washing dishes, writing emails, cooking — and do it today as if it were a sacred ceremony.",practice:"Before beginning your main work today, take three breaths and set an inner intention: 'I dedicate this work as an offering.'",reflection:"What ordinary activity in your life, if done with full presence and love, might become extraordinary?"},
+  // Ch3
+  {ref:"3.8",ch:3,v:8,sanskrit:"Niyatam kuru karma tvam, karma jyayo hy akarmanah",text:"Perform your obligatory duty, for action is indeed better than inaction. Even the maintenance of your body would not be possible by inaction.",meaning:"Life requires participation. Withdrawal from duty is not spiritual; it is avoidance dressed in spiritual language.",insight:"The path forward is always through engagement, not around it. Presence is the prerequisite for transformation.",life:"What have you been postponing in the name of 'waiting for the right time'? Today is that time.",practice:"Write your three most important responsibilities. Choose one and give it your complete focus for the next 90 minutes.",reflection:"Where is 'spiritual seeking' or self-improvement becoming an excuse to avoid the work directly in front of you?"},
+  {ref:"3.16",ch:3,v:16,sanskrit:"Evam pravartitam chakram, nanuvarttayatiha yah",text:"One who does not follow the wheel of creation set in motion by the Lord leads a life of sin and rejoices only in the senses.",meaning:"We are part of an interconnected web of giving and receiving. Refusing to contribute breaks the sacred cycle of life.",insight:"True fulfilment comes from what we give, not only what we receive. The giver is always more alive than the taker.",life:"Ask yourself: What am I contributing to the lives of others, the community, the earth? Is it proportional to what I receive?",practice:"Do one act of contribution today that no one will see or reward you for. Notice how it feels.",reflection:"If your life ended today, what would you wish you had given more of — and to whom?"},
+  {ref:"3.19",ch:3,v:19,sanskrit:"Tasmad asaktah satatam karyam karma samachara",text:"Therefore, perform every action without attachment. By acting without attachment, one attains the Supreme.",meaning:"Freedom is not found by stopping action but by performing it without the ego's need for validation or reward.",insight:"The deepest liberation happens in the marketplace of life, not on a mountain top. It is available right now.",life:"In today's interactions, notice when you act for approval versus when you act from genuine care. Choose the latter.",practice:"Do something kind for someone today with zero expectation of thanks, acknowledgment, or reciprocation.",reflection:"Can you identify one relationship or role where you are acting from attachment rather than genuine love?"},
+  {ref:"3.21",ch:3,v:21,sanskrit:"Yad yad acharati shreshthah, tat tad evetaro janah",text:"Whatever a great person does, others will follow. Whatever standard they set, the world pursues.",meaning:"Leadership is transmitted through being, not just telling. The lives we live are silent teachings to everyone watching.",insight:"You are always a model — for your children, colleagues, community. The question is only: what are you modelling?",life:"Live today as if the person you most want to inspire is silently watching every choice you make.",practice:"Name one person who looks up to you. Write down three qualities you want to consistently show them through your actions.",reflection:"What values are you actually transmitting through your life, as opposed to the values you intend to transmit?"},
+  {ref:"3.27",ch:3,v:27,sanskrit:"Prakrityaiva cha karmani, kriyamanani sarvashah",text:"All actions are performed by the qualities of nature. Only the fool, deluded by ego, thinks 'I am the doer.'",meaning:"Our deeper nature, shaped by countless forces, acts through us. The ego's claim of sole authorship is an illusion.",insight:"Humility is the natural result of seeing clearly. Gratitude follows. When we release the ego's claim, peace arrives.",life:"Today, when something goes well, say silently: 'Life is acting through me.' See if this changes your relationship to pride.",practice:"List three accomplishments you're proud of. For each, list five forces, people, or gifts from life that made them possible.",reflection:"How much of your identity is built on the belief that you — and only you — made yourself who you are?"},
+  // Ch4
+  {ref:"4.7",ch:4,v:7,sanskrit:"Yada yada hi dharmasya, glanir bhavati bharata",text:"Whenever righteousness declines and unrighteousness rises, at that time I manifest myself.",meaning:"The universe corrects itself. When darkness accumulates enough, light responds. This is the cosmic law of balance.",insight:"We need not despair at the world's troubles. Every era of great darkness has carried within it the seeds of awakening.",life:"Instead of lamenting what is broken around you, ask: 'What is my specific, humble role in the restoration?'",practice:"Name one injustice or problem in your world. Write one concrete action — however small — that you could take this week.",reflection:"Do you believe the universe has a self-correcting intelligence? How does your answer affect how you respond to suffering?"},
+  {ref:"4.8",ch:4,v:8,sanskrit:"Paritranaya sadhunam, vinashaya cha dushkritam",text:"To deliver the pious and to annihilate the miscreants, as well as to reestablish the principles of righteousness, I appear millennium after millennium.",meaning:"Divine presence enters history to restore balance — through individuals, movements, moments of unexpected grace.",insight:"Sometimes you are the answer to someone's prayer. The divine often works through ordinary human hands and voices.",life:"Ask today: 'Where is life asking me to be a restoring presence?' It may be in one conversation, one act of courage.",practice:"Write a letter to someone in your life who needs encouragement. You need not send it — the act of writing is the practice.",reflection:"Where have you been the unexpected arrival of goodness in someone's life — and perhaps not given yourself credit for it?"},
+  {ref:"4.11",ch:4,v:11,sanskrit:"Ye yatha mam prapadyante, tams tathaiva bhajamy aham",text:"As all surrender unto me, I reward them accordingly. Everyone follows my path in all respects.",meaning:"The divine meets every soul exactly where they are, through whatever path they take. All sincere seeking leads home.",insight:"No genuine longing for truth is wasted. Every path walked with sincerity is honoured by the universe.",life:"Respect others' spiritual paths even when they differ from yours. The destination is shared; the routes are many.",practice:"Today, when you encounter someone whose beliefs differ from yours, practise silent acknowledgment: 'Their path is also real.'",reflection:"Are you seeking truth — or are you seeking confirmation that your current beliefs are correct?"},
+  {ref:"4.18",ch:4,v:18,sanskrit:"Karmany akarma yah pasyed, akarmani cha karma yah",text:"One who sees inaction in action and action in inaction is truly intelligent among humans.",meaning:"The wisest person can be fully active in the world while internally at rest — and deeply still while appearing inactive.",insight:"Inner peace is not the absence of activity. It is the stability that persists regardless of what the outer life demands.",life:"Notice today that you can be both active and inwardly calm. The two are not opposites — they can coexist.",practice:"During your busiest moment today, take three slow breaths and notice: there is a stillness beneath the activity. Rest there.",reflection:"What would change in your productivity and relationships if you brought inner stillness to your outer action?"},
+  {ref:"4.34",ch:4,v:34,sanskrit:"Tad viddhi pranipatena, pariprashnena sevaya",text:"Learn the truth by approaching a spiritual master, inquire from them submissively and render service. They will impart wisdom because they have seen the truth.",meaning:"Wisdom requires a posture of openness. Seek those who have lived what they teach, and receive their guidance with humility.",insight:"The ego resists being taught. Spiritual growth accelerates the moment we genuinely admit 'I don't know.'",life:"Identify someone wiser than you in an area you are developing. Approach them with a genuine question this week.",practice:"Write down three things you don't know about your own inner life. Then sit in the question without rushing to an answer.",reflection:"Who are the teachers — formal or informal — who have most shaped your soul? Have you honoured their gift?"},
+  // Ch5
+  {ref:"5.7",ch:5,v:7,sanskrit:"Yoga-yukto vishudhatma, vijitatma jitendriyah",text:"One who works in devotion, who is a pure soul, who controls their mind and senses — everyone loves such a person, though they always work.",meaning:"True spiritual maturity is visible in everyday life — in how we work, how we relate, how we carry ourselves.",insight:"The person who has genuinely integrated spiritual practice is not separate from the world — they are more fully in it.",life:"Ask yourself: does my inner practice make me more loving, patient, and effective in daily life? If not, what needs adjusting?",practice:"Choose one quality — patience, kindness, focus — and make it your living practice in every interaction today.",reflection:"Is your spiritual practice making you better to be around? Ask someone who knows you well."},
+  {ref:"5.10",ch:5,v:10,sanskrit:"Brahmanyadhaya karmani, sangam tyaktva karoti yah",text:"One who performs their duty without attachment, surrendering the results unto the Supreme, is unaffected by sinful action as a lotus leaf is untouched by water.",meaning:"The lotus in muddy water is the eternal symbol: full immersion in life without being defined by it.",insight:"We can engage fully with the world — its pain, its mess, its beauty — without being swallowed by it. This is freedom.",life:"Today, participate fully in all your roles while maintaining the inner awareness: 'This is not the totality of who I am.'",practice:"Visualise a lotus leaf. See water beading off it. Then imagine your worries, judgments, and fears beading off your soul.",reflection:"What would it feel like to be fully present in your life without being defined, limited, or consumed by it?"},
+  {ref:"5.18",ch:5,v:18,sanskrit:"Vidya-vinaya-sampanne, brahmane gavi hastini",text:"The wise see with equal vision a learned scholar, a cow, an elephant, a dog, and a dog-eater.",meaning:"The sage sees the same divine light in all beings, regardless of form, status, or species. All life is equally sacred.",insight:"Prejudice — of any kind — is a spiritual blindness. Every being you encounter today carries the same light you carry.",life:"Notice where you unconsciously rank people by status, appearance, or education. Practise seeing past the outer form.",practice:"Today, in every interaction, silently acknowledge: 'The same light that is in me is in you.'",reflection:"Who do you find it hardest to see as equally sacred — and what does that reveal about your inner work?"},
+  // Ch6
+  {ref:"6.5",ch:6,v:5,sanskrit:"Uddhared atmanatmanam, natmanam avasadayet",text:"Let a person elevate themselves by their own mind, not degrade themselves. The mind is the friend of the conditioned soul, and its enemy as well.",meaning:"You are simultaneously the builder and the destroyer of your destiny. No one else holds this power.",insight:"The mind is a tool of extraordinary power. Untrained, it is your greatest saboteur. Mastered, it becomes your greatest ally.",life:"Notice the quality of your self-talk today. Is your inner voice building you up or tearing you down?",practice:"Each time you notice negative self-talk today, pause and offer yourself the kindness you would give a close friend.",reflection:"If your best friend spoke to you the way your inner critic does, would you keep them in your life?"},
+  {ref:"6.6",ch:6,v:6,sanskrit:"Bandhur atmatmanas tasya, yenatmaivatmana jitah",text:"For one who has conquered the mind, the mind is the best of friends; for one who has failed to do so, the mind remains the greatest enemy.",meaning:"Mind mastery is the central project of the spiritual life. Everything else depends on it.",insight:"We don't need to fight the mind — we need to understand it, direct it, and ultimately befriend it.",life:"Choose one mental habit today — worry, comparison, regret — and practise noticing it without feeding it.",practice:"When a difficult thought arises today, try: 'I see you. You are not me. I choose differently.' Then return to your breath.",reflection:"Is your mind currently your best friend or your most persistent obstacle? What would change if that relationship healed?"},
+  {ref:"6.17",ch:6,v:17,sanskrit:"Yukta-cheshtasya karmasu, yukta-svapnavabodhasya",text:"The person who eats, sleeps, rests, and works in a regulated manner can mitigate suffering by practising yoga.",meaning:"The spiritual life is built on a foundation of physical regularity. Discipline of body creates space for discipline of mind.",insight:"Self-mastery begins not with grand acts of renunciation but with consistent, humble attention to sleep, food, and rest.",life:"Review your daily rhythms: Are you sleeping enough? Eating with care? Moving your body? These are your first spiritual practices.",practice:"Commit to one physical regularity today — a consistent wake time, a nourishing meal, a short walk. Keep this for one week.",reflection:"Which basic rhythm of your physical life, if regulated, would most improve your mental and spiritual wellbeing?"},
+  {ref:"6.19",ch:6,v:19,sanskrit:"Yatha dipo nivata-stho, nengate sopama smrita",text:"As a lamp in a windless place does not flicker, so the disciplined mind of a yogi does not waver.",meaning:"The meditative mind, once trained, becomes like a steady flame — present, clear, undisturbed by the winds of circumstance.",insight:"We cannot control the winds of life. We can, through practice, become a steady flame that bends but never goes out.",life:"Imagine yourself as a flame today. Notice what 'winds' cause you to flicker. This is precisely where your practice lives.",practice:"Sit for 5 minutes and simply watch your breath. Each time your mind wanders, return without judgment. Count the returns.",reflection:"What is the internal condition — mental, emotional, or physical — that most reliably disturbs your inner steadiness?"},
+  {ref:"6.34",ch:6,v:34,sanskrit:"Chanchalam hi manah krishna, pramathi balavad drdham",text:"The mind is restless, turbulent, obstinate and very strong. To subdue it seems more difficult than controlling the wind.",meaning:"Even Arjuna — a great warrior — acknowledges the power of the unruly mind. This is not weakness; it is honesty.",insight:"The first step to mastering the mind is admitting how powerful it is. Frustration with the mind's restlessness is progress.",life:"Stop judging yourself for having a wandering mind. It is the nature of the mind. The practice is returning, not not-wandering.",practice:"Today, every time you catch your mind wandering from the present task, simply count it: 1, 2, 3. No judgment. Just count.",reflection:"What would be different in your life if you had made peace with your mind's nature rather than fighting it?"},
+  {ref:"6.35",ch:6,v:35,sanskrit:"Asamsayam mahabaho, mano durnigraham chalam",text:"O mighty-armed Arjuna, the mind is indeed difficult to restrain, but through practice and dispassion, it can be controlled.",meaning:"Mind mastery is possible — but it requires consistent practice over time. There is no shortcut, but there is a path.",insight:"Dispassion does not mean indifference. It means not being enslaved to every impulse. We can feel without being swept away.",life:"Begin with one small daily practice: five minutes of stillness, or ten breaths before reacting. This is how empires of mind are built.",practice:"Set a recurring reminder today. At that time, wherever you are, take 10 slow conscious breaths. Do this for 7 days.",reflection:"What area of your life would most benefit from 10% more self-mastery? What one practice would move you there?"},
+  // Ch7
+  {ref:"7.8",ch:7,v:8,sanskrit:"Raso ham apsu kaunteya, prabhasmi shashi-suryayoh",text:"I am the taste of water, the light of the sun and moon, the syllable Om in the Vedas, the sound in ether.",meaning:"The divine is not distant or separate — it is the very quality and essence woven into every experience of life.",insight:"Spiritual awakening is not an addition to life. It is a recognition of what has always been present within it.",life:"Today, taste water mindfully. See sunlight consciously. In the ordinary, practise finding the extraordinary.",practice:"Choose five simple sensory experiences today. In each, ask: 'What is the presence that allows me to experience this?'",reflection:"Where in your ordinary life have you been walking past the sacred without noticing it?"},
+  {ref:"7.19",ch:7,v:19,sanskrit:"Bahunam janmanam ante, jnanavan mam prapadyate",text:"After many births and deaths, one who is actually in knowledge surrenders unto me. Such a great soul is very rare.",meaning:"True wisdom — the kind that leads to genuine surrender — often comes after a long journey through experience and mistake.",insight:"We should not be in a hurry with the spiritual life. Each 'wrong turn' is actually part of the curriculum.",life:"Look back at your hardest lessons. Can you find the gift of wisdom that each difficulty ultimately delivered?",practice:"Write one sentence about the most painful chapter of your life — and what it ultimately taught you about yourself.",reflection:"What if every difficult experience you have had was precisely preparing you for who you are becoming?"},
+  // Ch8
+  {ref:"8.5",ch:8,v:5,sanskrit:"Anta-kale cha mam eva, smaran muktva kalevaram",text:"Whoever remembers me alone at the time of death, at the moment of leaving the body — that soul attains my state.",meaning:"What we carry in consciousness at life's end reflects what we have cultivated throughout our lives. This is the ultimate exam.",insight:"The quality of our dying reflects the quality of our living. What we practise in small moments, we become in our last.",life:"Ask: 'If today were my last, what would I regret not having done, said, or been?' Then do it, say it, or be it.",practice:"Write a single sentence about what you want your life to have been about. Read it aloud and let it guide today.",reflection:"What are you currently practising — through your daily choices — for the person you will be at your end?"},
+  {ref:"8.7",ch:8,v:7,sanskrit:"Tasmat sarvesu kalesu, mam anusmara yudhya cha",text:"Therefore, at all times think of me and fight. With mind and intellect dedicated to me, you will surely come to me.",meaning:"Spiritual remembrance is not confined to temples and quiet hours. It is available in every moment — even in battle.",insight:"The sacred and the practical are not separate domains. Every moment is an opportunity for inner alignment.",life:"Today, choose one action and dedicate it consciously. While doing it, remain inwardly aware of your deepest purpose.",practice:"Set a gentle hourly reminder. Each time it sounds, take one breath and ask: 'Am I present? Am I aligned?' Then continue.",reflection:"What would change in your work and relationships if you brought spiritual remembrance into your most ordinary moments?"},
+  // Ch9
+  {ref:"9.22",ch:9,v:22,sanskrit:"Ananyash chintayanto mam, ye janah paryupasate",text:"For those who worship me with devotion, meditating on my transcendental form, I carry what they lack and preserve what they have.",meaning:"Sincere devotion — to truth, to the divine, to your highest self — activates a support that goes beyond individual effort.",insight:"Surrender is not passivity. It is the act of aligning your will with a larger intelligence. It takes immense courage.",life:"Trust the process. Some doors that close are divine redirection. Stay devoted to what is true, good, and beautiful.",practice:"Write down one fear or worry. Then consciously place it in 'larger hands' — whether that means God, the universe, or life itself.",reflection:"Is there an area of life where you are trying to carry something alone that you were never meant to carry alone?"},
+  {ref:"9.26",ch:9,v:26,sanskrit:"Patram pushpam phalam toyam, yo me bhaktya prayacchati",text:"If one offers me with love and devotion a leaf, a flower, a fruit, or water, I will accept it.",meaning:"The divine is moved not by the grandeur of the offering but by the sincerity of the heart that offers it.",insight:"You don't need to be extraordinary to be worthy of grace. A simple act of genuine love is enough.",life:"Today, do one small thing — a kind word, a moment of gratitude, a quiet prayer — with your whole heart. That is enough.",practice:"Choose a simple offering today: a flower placed, a meal shared, a moment of genuine thanks. Give it with full attention.",reflection:"Where are you waiting to be 'enough' before you show up fully? What if you were already enough?"},
+  // Ch10
+  {ref:"10.8",ch:10,v:8,sanskrit:"Aham sarvasya prabhavo, mattah sarvam pravartate",text:"I am the source of all spiritual and material worlds. Everything emanates from me. The wise who know this perfectly engage in my devotional service.",meaning:"When we recognise the divine source of all existence, we naturally move from grasping to gratitude, from fear to wonder.",insight:"Awe is a spiritual practice. When you encounter beauty, complexity, or mystery, you are meeting the source directly.",life:"Today, find three moments to be genuinely astonished by something — a face, a cloud, a piece of music, your own breath.",practice:"Sit outside or by a window for five minutes. Let whatever you see be enough. Let wonder arise without forcing it.",reflection:"When did you last feel genuine awe? What does the infrequency of that feeling tell you about how you are living?"},
+  {ref:"10.20",ch:10,v:20,sanskrit:"Aham atma gudakesha, sarva-bhutasaya-sthitah",text:"I am the soul seated in the hearts of all living beings. I am the beginning, the middle, and the end of all beings.",meaning:"The same presence that you search for outwardly is already seated at the centre of your own heart. It has never left.",insight:"The spiritual journey is ultimately a homecoming. We travel far only to find that what we sought was always within.",life:"Whenever you feel lost, separated, or empty today, place your hand on your heart and remember: the source is here.",practice:"For three minutes, breathe into your heart centre. Imagine a steady, warm light there. This is not imagination — it is recognition.",reflection:"What is the feeling you are ultimately seeking — in love, success, or belonging — and is it available to you right now?"},
+  // Ch11
+  {ref:"11.33",ch:11,v:33,sanskrit:"Tasmat tvam uttishtha yasho labhasva, jitva shatrun bhunkshva rajyam samriddham",text:"Therefore get up and prepare to fight. After conquering your enemies you will enjoy a flourishing kingdom. They are already put to death by my arrangement.",meaning:"Sometimes the outcome is already written by a larger wisdom. Your role is to show up fully and play your part.",insight:"We are not the authors of history — we are participants in it. And participation with full commitment is always honoured.",life:"Stop waiting for certainty before you act. Commit fully to your righteous purpose and trust the larger unfolding.",practice:"Name the 'battle' in front of you right now. Write: 'I commit to showing up fully, regardless of the outcome.' Sign it.",reflection:"Where are you waiting for a guarantee before you will commit? What would it mean to commit without one?"},
+  // Ch12
+  {ref:"12.13",ch:12,v:13,sanskrit:"Adveshta sarva-bhutanam, maitrah karuna eva cha",text:"One who is not envious but is a kind friend to all living entities, who does not think themselves a proprietor but is free from false ego — such a devotee is very dear to me.",meaning:"The portrait of a truly spiritual person is simple: kind, non-envious, humble, free from the need to possess.",insight:"These are not lofty achievements — they are daily choices. Every moment offers an opportunity to practise each one.",life:"Today, choose one: non-envy, genuine friendliness, or releasing the need to possess/control something.",practice:"When envy arises today, try transforming it: 'Their success is proof that what I want is possible. I celebrate it.'",reflection:"Which of these qualities — kindness, non-envy, humility, non-possessiveness — most needs your attention right now?"},
+  {ref:"12.15",ch:12,v:15,sanskrit:"Yasmat nodvijate loko, lokan nodvijate cha yah",text:"One by whom no one is put into difficulty, who is not disturbed by anxiety, who is steady in happiness and distress — such a person is very dear to me.",meaning:"The mature soul neither causes suffering to others nor is destabilised by life's inevitable difficulties. This is the goal.",insight:"True happiness is not the absence of difficulty — it is the capacity to remain rooted while difficulty passes through.",life:"Ask honestly: Do my words and actions ever unnecessarily disturb others? Am I adding to or subtracting from the world's peace?",practice:"Choose one situation today where you could either react or remain steady. Choose steadiness. Notice what opens as a result.",reflection:"What would it look like in your daily life to be someone from whom others walk away feeling lighter?"},
+  // Ch13
+  {ref:"13.8",ch:13,v:8,sanskrit:"Amanitvam adambhitvam, ahimsa kshantir arjavam",text:"Humility, modesty, non-violence, tolerance, simplicity, approaching a spiritual teacher, cleanliness, constancy, self-control — these are knowledge.",meaning:"True knowledge is not information — it is a way of being. These qualities are themselves the embodiment of wisdom.",insight:"We often seek more information when what we need is more humility. The wisest people tend to speak the least and listen the most.",life:"Pick one quality from this verse and practise it deliberately today: humility, non-violence, simplicity, or tolerance.",practice:"In one conversation today, listen three times more than you speak. Notice what you learn when your mouth is quiet.",reflection:"Which of these qualities, if you deepened it, would most transform your relationships and inner life?"},
+  {ref:"13.28",ch:13,v:28,sanskrit:"Samam pashyan hi sarvatra, samavasthitam ishwaram",text:"One who sees the Supreme Lord equally present in all beings — the imperishable within the perishable — truly sees.",meaning:"The spiritual vision is one of radical equality: the same divine presence looks through every pair of eyes.",insight:"Prejudice, hierarchy, and dismissal become impossible once you genuinely see the divine in every being.",life:"Today, when you encounter someone difficult, try silently: 'The same light that is in me is in you.' See what shifts.",practice:"Meditate for 5 minutes on the following: every person you will meet today carries the same sacred presence you do.",reflection:"Who in your life is hardest to see as sacred — and what does healing that perception require of you?"},
+  // Ch14
+  {ref:"14.5",ch:14,v:5,sanskrit:"Sattvam rajas tama iti, gunah prakriti-sambhavah",text:"Goodness, passion, and ignorance — these are the three qualities born of material nature that bind the soul.",meaning:"Every thought, feeling, and action arises from a mixture of clarity (sattva), drive (rajas), and inertia (tamas).",insight:"Self-knowledge begins with recognising which quality is dominant in any given moment. Awareness is the first step to choice.",life:"Today, notice your predominant quality at different times: clarity and calm (sattva), urgency and desire (rajas), or lethargy (tamas).",practice:"In the evening, reflect: Which of the three qualities governed most of my day? What will I choose more of tomorrow?",reflection:"Which quality most regularly rules your mind — and what specific practices would cultivate more sattva?"},
+  {ref:"14.17",ch:14,v:17,sanskrit:"Sattvat sanjayate jnanam, rajaso lobha eva cha",text:"From the mode of goodness comes real knowledge; from the mode of passion, greed; and from the mode of ignorance comes foolishness.",meaning:"Our mental quality determines the quality of our perception. A sattvic mind sees clearly; a tamasic mind sees distortedly.",insight:"Before making important decisions, it is worth asking: what quality of mind am I currently in? Is this the right moment to choose?",life:"Delay important decisions when you are in a state of strong emotion, exhaustion, or craving. Choose from clarity.",practice:"Before any major decision this week, first bring yourself to a calm and clear state. Breathe, walk, sleep — then decide.",reflection:"Can you recall a decision made from passion or ignorance that you later regretted? What does that teach you?"},
+  // Ch15
+  {ref:"15.1",ch:15,v:1,sanskrit:"Urdhva-mulam adhah-shakham, ashvattham prahur avyayam",text:"There is an eternal fig tree, with its roots upward and branches below. Its leaves are the Vedic hymns. One who knows this tree knows the Vedas.",meaning:"The world-tree of existence grows from above — from consciousness downward into matter. Spirit is the root; form is the branch.",insight:"We often try to fix the branches of our lives without attending to the roots. True change always begins at the level of consciousness.",life:"If your outer life feels disordered, look inward first. What belief, fear, or identity at the root level needs tending?",practice:"Draw a tree. Label the roots with your deepest beliefs and values. Label the branches with areas of your outer life. Are they aligned?",reflection:"What deeply held belief is the root from which most of your current life challenges are growing?"},
+  {ref:"15.15",ch:15,v:15,sanskrit:"Sarvasya chaham hridi sannivishto, mattah smritir jnanam apohanam cha",text:"I am seated in everyone's heart, and from me come remembrance, knowledge, and forgetfulness.",meaning:"Memory, insight, and the mercy of forgetfulness all arise from the divine presence within. Nothing in your inner life happens without grace.",insight:"Even forgetting is a gift. The mind releases what we are ready to release. Trust the natural rhythm of remembering and letting go.",life:"What are you holding onto that might be ready to be released? And what have you forgotten that is ready to be remembered?",practice:"Write for 5 minutes without stopping: 'What I am ready to release is…' and 'What I am ready to remember is…'",reflection:"What would it mean to trust that the knowledge you need will arrive exactly when you are ready for it?"},
+  // Ch16
+  {ref:"16.1",ch:16,v:1,sanskrit:"Abhayam sattva-samsuddhir, jnana-yoga-vyavasthitih",text:"Fearlessness, purification of one's existence, cultivation of spiritual knowledge, charity, self-control, sacrifice, simplicity — these are divine qualities.",meaning:"The divine inheritance of a human life is available to all who choose it. These are not distant ideals — they are daily choices.",insight:"Fearlessness is listed first. It is the foundation on which all other qualities stand. Everything virtuous requires it.",life:"Which of these qualities — fearlessness, simplicity, self-control, charity — would most transform your life if you chose it today?",practice:"Name one small act of courage you could take today. Not a grand act — just a small true one. Then do it.",reflection:"What one quality, consistently chosen, would most clearly shift the direction of your life in one year?"},
+  {ref:"16.21",ch:16,v:21,sanskrit:"Tri-vidham narakasyedam, dvaram nashanam atmanah",text:"Lust, anger, and greed are the three gates leading to hell. Every sane person should give these up, for they are destructive to the soul.",meaning:"These three forces — when habitually indulged — disintegrate the inner life, cloud judgment, and destroy relationships.",insight:"We need not fight these forces violently. The practice is to recognise them early, before they gain momentum.",life:"Today, notice early warning signs of lust, anger, or greed. The sign itself is not the problem — feeding it is.",practice:"When you notice craving, anger, or grasping today, pause and take 5 breaths before acting. Just pause. That pause is wisdom.",reflection:"Which of these three most consistently derails your better self — and what is the habitual trigger?"},
+  // Ch17
+  {ref:"17.15",ch:17,v:15,sanskrit:"Anudvega-karam vakyam, satyam priya-hitam cha yat",text:"Words that do not cause distress, that are truthful, pleasing, and beneficial — this is the austerity of speech.",meaning:"Mastering speech is one of the most accessible and impactful spiritual practices available. Words create worlds.",insight:"The test of right speech: Is it true? Is it kind? Is it necessary? If all three, speak. If not all three, pause.",life:"Before speaking today, especially in difficult conversations, ask: Is this true? Is it kind? Will it genuinely help?",practice:"Choose one conversation today to practise the three gates of speech: truth, kindness, helpfulness. Notice the quality of connection.",reflection:"What is one habit of speech — gossip, complaining, harshness — that, if released, would most improve your relationships?"},
+  {ref:"17.16",ch:17,v:16,sanskrit:"Manah-prasadah saumyatvam, maunam atma-vinigrahah",text:"Serenity of mind, gentleness, equanimity, self-control, and the purity of thought — these constitute the austerity of the mind.",meaning:"The spiritual life asks us to attend not just to our actions but to the quality of mind from which those actions arise.",insight:"A gentle mind is not a weak mind. It is a mind that has stopped fighting reality and chosen wisdom instead.",life:"Today, practise gentleness — not just in words or deeds, but in the quality of your inner self-talk and thought.",practice:"When a harsh or critical thought arises today — about yourself or another — see if you can meet it with gentle curiosity.",reflection:"What would a genuinely gentle inner life feel like? And what stands between you and that gentleness?"},
+  // Ch18
+  {ref:"18.5",ch:18,v:5,sanskrit:"Yajna-dana-tapah-karma, na tyajyam karyam eva tat",text:"Acts of sacrifice, charity, and penance are not to be given up but should be performed. Indeed, purification of the great souls comes through such acts.",meaning:"Duty, generosity, and self-discipline are not burdens — they are the very tools by which the soul is refined.",insight:"We often seek the shortcut that avoids sacrifice. But sacrifice — of time, comfort, ego — is precisely what develops greatness.",life:"Today, do one act of genuine sacrifice: give something of real value — time, money, attention — to someone who needs it.",practice:"Identify something you've been meaning to give — to a cause, a person, a purpose. Give it today, without condition.",reflection:"What would you be willing to sacrifice for something that truly matters? Have you been willing to pay that price?"},
+  {ref:"18.20",ch:18,v:20,sanskrit:"Sarva-bhuteshu yenaikam, bhavam avyayam ikshate",text:"That knowledge by which one sees one undivided, imperishable reality in all beings — that knowledge is in the mode of goodness.",meaning:"Unity is not a philosophical concept — it is the direct perception available to the purified mind. All life is one.",insight:"Every act of compassion is a moment of correctly seeing reality. Every act of cruelty is a moment of spiritual blindness.",life:"Practice seeing oneness today in one moment: when you feel separate from someone, ask 'What do we share?'",practice:"List 5 people you find difficult. For each, write one deep human quality you genuinely share with them.",reflection:"If you truly saw oneness in all people — friend and enemy alike — what in your life would immediately change?"},
+  {ref:"18.37",ch:18,v:37,sanskrit:"Yat tad agre visham iva, pariname amritopamam",text:"That which in the beginning may seem like poison but at the end is just like nectar — that happiness is said to be in the mode of goodness.",meaning:"Sattvic happiness requires effort, discipline, and patience. It may not feel pleasurable at first, but it deepens over time.",insight:"Short-term discomfort often leads to lasting joy. Short-term pleasure often leads to lasting emptiness. Choose wisely.",life:"Identify one worthwhile discipline — exercise, meditation, honest relationship — that feels hard now but will nourish you long-term.",practice:"Do one thing today that your future self will thank you for, even if your present self resists it.",reflection:"What 'poison' in your life — a difficult practice or honest change — is actually nectar in disguise?"},
+  {ref:"18.41",ch:18,v:41,sanskrit:"Brahmanah kshatriyah vishyam, shudranaam cha parantapa",text:"The duties of all humans are assigned according to qualities born of their own nature. There is no birth that makes one superior.",meaning:"Our calling comes from our deepest nature, not our background or birth. Each person has a unique and sacred contribution.",insight:"You were born with particular gifts not for yourself alone, but for the world that needs exactly what you carry.",life:"Ask: What are the qualities in me that feel most natural, most alive? How can they be offered more fully today?",practice:"Write your three deepest natural gifts. Then write one way each could serve someone or something beyond yourself.",reflection:"Are you currently living in alignment with your deepest nature — and if not, what is the first small step toward that alignment?"},
+  {ref:"18.61",ch:18,v:61,sanskrit:"Ishvarah sarva-bhutanam, hrid-deshe arjuna tishthati",text:"The Supreme Lord is situated in everyone's heart, O Arjuna, and is directing the wanderings of all living entities.",meaning:"There is an inner intelligence — call it the divine, intuition, or the soul — guiding each life from within.",insight:"We are rarely as lost as we feel. There is something in us that always knows the next right step. The practice is listening.",life:"Today, before deciding anything — big or small — pause and listen inward before acting outward. Trust what you hear.",practice:"Sit for 3 minutes in silence. Ask your deepest self one question. Don't analyse. Just listen. Write what comes.",reflection:"When have you most clearly heard your inner guidance? What allowed you to hear it — and what usually drowns it out?"},
+  {ref:"18.63",ch:18,v:63,sanskrit:"Iti te jnanam akhyatam, guhyad guhyataram maya",text:"Thus I have explained to you the most confidential of all knowledge. Deliberate on this fully, and do what you wish to do.",meaning:"The teaching is complete. Now comes the most important part: your own reflection, your own integration, your own choice.",insight:"Wisdom given freely becomes your own only when you live it. The real scripture is written in your choices.",life:"Of all you know to be true and right, what are you not yet living? Begin there. That is your practice.",practice:"Write one sentence beginning: 'The wisdom I know but have not yet fully lived is…' Then live it for one day.",reflection:"If the Gita's entire teaching could be distilled into one quality for you to embody more fully — what would it be?"},
+  {ref:"18.65",ch:18,v:65,sanskrit:"Man-mana bhava mad-bhakto, mad-yaji mam namaskuru",text:"Think of me always, become my devotee, worship me and bow down to me. So shall you come to me. I promise you this, for you are dear to me.",meaning:"The ultimate teaching arrives as love: you are dear. The divine calls not from distance but from within closeness.",insight:"All the philosophy converges here: the cosmos loves you specifically. Your life is not an accident. You are wanted here.",life:"Carry this through your day: 'I am held. I am known. I am loved.' And treat others as beings equally held, known, and loved.",practice:"Write a letter from your highest self to your struggling self. Let the first line be: 'You are dear to me.'",reflection:"What would shift in how you live if you genuinely believed — in your bones — that you are unconditionally loved?"},
+  {ref:"18.66",ch:18,v:66,sanskrit:"Sarva dharman parityajya, mam ekam sharanam vraja",text:"Abandon all varieties of dharma and simply surrender to me. I will deliver you from all sinful reactions. Do not fear.",meaning:"The final teaching is radical grace: beyond all doing, all performing, all striving — simply rest in the arms of the divine.",insight:"The highest spiritual maturity is not a grand achievement — it is a total relaxation into trust. This is available now.",life:"In one area of life where you have been straining, trying, forcing — practise today the courage of surrender.",practice:"Sit quietly and say aloud: 'I release my grip. I trust. I am held.' Mean it, even if only for one breath.",reflection:"What in your life most needs to be surrendered — not abandoned, but released into loving, trusting hands?"}
+];
+
+// Map 365 days to verse indices with deliberate thematic spread
+// Day 1-365 assigned using a pattern that revisits major themes seasonally
+function buildYearMap() {
+  const map = [];
+  const total = VERSES.length;
+  for (let i = 0; i < 365; i++) {
+    // Distribute verses evenly; cycle back with slight offset for variety
+    const idx = (i * 7 + Math.floor(i / total)) % total;
+    map.push(idx);
+  }
+  return map;
+}
+const YEAR_MAP = buildYearMap();
+
+function getDayOfYear(date) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff = date - start;
+  return Math.floor(diff / 86400000);
+}
+
+// ── SVG Image Generation via Anthropic API ──────────────────────────────────
+async function generateVerseImage(verse) {
+  const prompt = `Create a beautiful, atmospheric SVG image (700x220 pixels) as a background for this Bhagavad Gita verse: "${verse.text.substring(0,80)}".
+
+The SVG should:
+- Be a deeply spiritual, aesthetic scene
+- Use warm saffron, gold, deep ochre, lotus pink, and twilight purple tones
+- Include symbolic elements like: lotus flowers, flame/diya, sun rays, peacock feathers, cosmic geometry, river Ganges, Om symbol, stars, tree of life, or forest with light filtering through
+- Have layered depth with gradient backgrounds creating an atmospheric, painterly feel
+- NO text in the SVG — only visual/artistic elements
+- Use CSS gradients, geometric shapes, circles, petals
+- Be meditative and beautiful, evoking ancient India and the divine
+
+Return ONLY valid SVG code starting with <svg and ending with </svg>. No explanation, no markdown, no other text.`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const svgText = data.content?.map(b => b.text || "").join("").trim();
+    // Extract SVG if wrapped
+    const match = svgText.match(/<svg[\s\S]*<\/svg>/i);
+    return match ? match[0] : null;
+  } catch(e) {
+    console.error("Image gen failed:", e);
+    return null;
+  }
+}
+
+function fallbackSVG(verse) {
+  // Beautiful hand-crafted fallback SVG with saffron/gold theme
+  const themes = [
+    // Sunrise / lotus
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" width="700" height="220">
+      <defs>
+        <radialGradient id="sky" cx="50%" cy="70%" r="80%">
+          <stop offset="0%" stop-color="#f5c842"/>
+          <stop offset="40%" stop-color="#e07b39"/>
+          <stop offset="100%" stop-color="#1a120b"/>
+        </radialGradient>
+        <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffe082"/>
+          <stop offset="100%" stop-color="#e07b39" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="700" height="220" fill="url(#sky)"/>
+      <!-- Sun glow -->
+      <circle cx="350" cy="155" r="90" fill="url(#sun)" opacity=".7"/>
+      <circle cx="350" cy="155" r="40" fill="#ffe082" opacity=".9"/>
+      <!-- Rays -->
+      ${Array.from({length:16},(_,i)=>{const a=i*22.5;const r1=50,r2=130;const x1=350+r1*Math.cos(a*Math.PI/180),y1=155+r1*Math.sin(a*Math.PI/180),x2=350+r2*Math.cos(a*Math.PI/180),y2=155+r2*Math.sin(a*Math.PI/180);return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#ffe082" stroke-width="1.5" opacity=".4"/>`;}).join('')}
+      <!-- Lotus petals -->
+      ${Array.from({length:8},(_,i)=>{const a=i*45;return `<ellipse cx="${350+35*Math.cos(a*Math.PI/180)}" cy="${155+35*Math.sin(a*Math.PI/180)}" rx="18" ry="8" fill="#f48fb1" opacity=".7" transform="rotate(${a},${350+35*Math.cos(a*Math.PI/180)},${155+35*Math.sin(a*Math.PI/180)})"/>`;}).join('')}
+      <!-- Water reflection -->
+      <rect x="0" y="165" width="700" height="55" fill="#1a120b" opacity=".5"/>
+      <rect x="0" y="165" width="700" height="3" fill="#c9a84c" opacity=".3"/>
+      <!-- Stars -->
+      ${Array.from({length:30},()=>{const x=Math.random()*700,y=Math.random()*100;return `<circle cx="${x}" cy="${y}" r="${Math.random()*1.5+0.5}" fill="#ffe082" opacity="${Math.random()*.6+.2}"/>`;}).join('')}
+    </svg>`,
+    // Om / cosmic geometry
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" width="700" height="220">
+      <defs>
+        <radialGradient id="bg2" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#2e1c0c"/>
+          <stop offset="100%" stop-color="#0d0806"/>
+        </radialGradient>
+      </defs>
+      <rect width="700" height="220" fill="url(#bg2)"/>
+      <!-- Mandala rings -->
+      ${Array.from({length:6},(_,i)=>`<circle cx="350" cy="110" r="${30+i*22}" fill="none" stroke="#c9a84c" stroke-width="${i===0?2:0.7}" opacity="${0.5-i*0.07}"/>`).join('')}
+      <!-- Mandala petals -->
+      ${Array.from({length:12},(_,i)=>{const a=i*30;return `<ellipse cx="${350+52*Math.cos(a*Math.PI/180)}" cy="${110+52*Math.sin(a*Math.PI/180)}" rx="14" ry="5" fill="#c9a84c" opacity=".2" transform="rotate(${a},${350+52*Math.cos(a*Math.PI/180)},${110+52*Math.sin(a*Math.PI/180)})"/>`;}).join('')}
+      <!-- Centre glow -->
+      <circle cx="350" cy="110" r="28" fill="#e07b39" opacity=".15"/>
+      <circle cx="350" cy="110" r="14" fill="#ffe082" opacity=".3"/>
+      <!-- Scattered dots -->
+      ${Array.from({length:50},()=>{const x=Math.random()*700,y=Math.random()*220;return `<circle cx="${x}" cy="${y}" r="${Math.random()*1+0.3}" fill="#c9a84c" opacity="${Math.random()*.4+.1}"/>`;}).join('')}
+    </svg>`
+  ];
+  return themes[Math.floor(Math.random() * themes.length)];
+}
+
+// ── State ──────────────────────────────────────────────────────────────────
+const today = new Date();
+const todayDOY = getDayOfYear(today);
+let currentDOY = todayDOY;
+
+async function renderVerse(doy, animate=true) {
+  const wi = document.getElementById('wi');
+  if (animate) {
+    wi.classList.add('fade');
+    await new Promise(r => setTimeout(r, 350));
+  }
+
+  const verseIdx = YEAR_MAP[((doy - 1) % 365 + 365) % 365];
+  const v = VERSES[verseIdx];
+  const dayNum = ((doy - 1) % 365 + 365) % 365 + 1;
+
+  // Header
+  document.getElementById('hdr-title').textContent = `Bhagavad Gita · ${v.ref}`;
+  const opts = {weekday:'long',year:'numeric',month:'long',day:'numeric'};
+  const displayDate = new Date(today.getFullYear(), 0, doy);
+  document.getElementById('hdr-date').textContent = displayDate.toLocaleDateString('en-IN', opts);
+  document.getElementById('ftr-info').textContent = `Day ${dayNum} of 365`;
+
+  // Verse overlay
+  document.getElementById('img-ref').textContent = `BG ${v.ref}`;
+  document.getElementById('img-verse').textContent = v.text.length > 90 ? v.text.substring(0,90)+'…' : v.text;
+
+  // Sections
+  document.getElementById('sanskrit').textContent = v.sanskrit;
+  document.getElementById('s-meaning').textContent = v.meaning;
+  document.getElementById('s-insight').textContent = v.insight;
+  document.getElementById('s-life').textContent = v.life;
+  document.getElementById('s-practice').textContent = v.practice;
+  document.getElementById('s-reflection').textContent = v.reflection;
+
+  if (animate) {
+    wi.classList.remove('fade');
+  }
+
+  // Generate image
+  document.getElementById('img-loading').style.display = 'flex';
+  document.getElementById('img-content').style.display = 'none';
+
+  const svg = await generateVerseImage(v) || fallbackSVG(v);
+  document.getElementById('svg-container').innerHTML = svg;
+  document.getElementById('img-loading').style.display = 'none';
+  document.getElementById('img-content').style.display = 'block';
+}
+
+function go(dir) {
+  currentDOY += dir;
+  renderVerse(currentDOY);
+}
+
+// Init
+renderVerse(currentDOY, false);
+
+// Set footer date on load
+document.getElementById('hdr-date').textContent = today.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>
