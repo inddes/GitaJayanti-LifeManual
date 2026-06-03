@@ -25,17 +25,16 @@ export const StepIn: React.FC = () => {
         <div ref={cardsRef.ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${cardsRef.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <a
-              href="https://www.youtube.com/watch?v=TPSqthJ364o"
+              href="https://www.youtube.com/watch?v=XJfT1k3HXw8&t=12s"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group block relative"
-              style={{ pointerEvents: 'auto' }}
             >
-              <div className="relative h-64 bg-gradient-to-br from-spiritual-saffron/20 to-spiritual-gold/30 flex items-center justify-center pointer-events-none">
+              <div className="relative h-64 bg-gradient-to-br from-spiritual-saffron/20 to-spiritual-gold/30 flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-spiritual-gold/10 to-spiritual-saffron/20 animate-pulse"></div>
                 <Video className="w-32 h-32 text-spiritual-gold opacity-80 group-hover:opacity-100 transition-opacity duration-300 animate-bounce" style={{ animationDuration: '3s' }} />
               </div>
-              <div className="p-8 pointer-events-none">
+              <div className="p-8">
                 <h2 className="text-3xl font-bold text-spiritual-brown mb-4 group-hover:text-spiritual-gold transition-colors duration-300">
                   {t.stepIn.cards.exploreWisdom.title}
                 </h2>
@@ -56,13 +55,12 @@ export const StepIn: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group block relative"
-              style={{ pointerEvents: 'auto' }}
             >
-              <div className="relative h-64 bg-gradient-to-br from-spiritual-lightGold/30 to-spiritual-cream flex items-center justify-center pointer-events-none">
+              <div className="relative h-64 bg-gradient-to-br from-spiritual-lightGold/30 to-spiritual-cream flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-spiritual-cream to-spiritual-lightGold/20 animate-pulse" style={{ animationDelay: '1s' }}></div>
                 <BookOpen className="w-32 h-32 text-spiritual-gold opacity-80 group-hover:opacity-100 transition-opacity duration-300 animate-bounce" style={{ animationDuration: '3s', animationDelay: '0.5s' }} />
               </div>
-              <div className="p-8 pointer-events-none">
+              <div className="p-8">
                 <h2 className="text-3xl font-bold text-spiritual-brown mb-4 group-hover:text-spiritual-gold transition-colors duration-300">
                   {t.stepIn.cards.learnWisdom.title}
                 </h2>
@@ -94,10 +92,9 @@ export const StepIn: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 text-lg px-12 py-4 bg-spiritual-gold text-white rounded-lg font-semibold transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-spiritual-gold/90"
-            style={{ pointerEvents: 'auto' }}
           >
-            <UserPlus className="w-6 h-6" style={{ pointerEvents: 'none' }} />
-            <span style={{ pointerEvents: 'none' }}>{t.stepIn.journeyBegins.button}</span>
+            <UserPlus className="w-6 h-6" />
+            <span>{t.stepIn.journeyBegins.button}</span>
           </a>
         </div>
       </section>
