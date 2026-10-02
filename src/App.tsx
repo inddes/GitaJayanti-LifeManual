@@ -15,6 +15,7 @@ import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
+import { WisdomJourneyPage } from './pages/WisdomJourneyPage';
 
 function AppContent() {
   const location = useLocation();
@@ -40,6 +41,7 @@ function AppContent() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/wisdom/:slug" element={<WisdomJourneyPage />} />
         </Routes>
       </main>
       {showFooter && <Footer />}
