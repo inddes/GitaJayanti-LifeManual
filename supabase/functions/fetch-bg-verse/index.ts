@@ -26,115 +26,145 @@ function cleanHtml(html: string): string {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&#x27;/g, "'")
     .replace(/\s+/g, ' ')
     .replace(/\n\s+/g, '\n')
     .trim();
 }
 
-function extractSection(html: string, className: string): string {
-  const regex = new RegExp(`<div[^>]*class="[^"]*${className}[^"]*"[^>]*>(.*?)<\/div>`, 'is');
-  const match = html.match(regex);
-  if (match && match[1]) {
-    return cleanHtml(match[1]);
+function stripHeading(text: string, heading: string): string {
+  const lc = text.toLowerCase();
+  const headingLc = heading.toLowerCase();
+  if (lc.startsWith(headingLc)) {
+    return text.substring(heading.length).trim();
   }
-  return '';
+  return text;
+}
+
+function extractSection(html: string, className: string): string {
+  const startIdx = html.indexOf(`class="${className}"`);
+  if (startIdx === -1) return '';
+
+  const afterStart = html.indexOf('>', startIdx);
+  if (afterStart === -1) return '';
+
+  let depth = 1;
+  let pos = afterStart + 1;
+  let endIdx = -1;
+
+  while (pos < html.length && depth > 0) {
+    const openTag = html.indexOf('<div', pos);
+    const closeTag = html.indexOf('</div>', pos);
+
+    if (closeTag === -1) break;
+    if (openTag !== -1 && openTag < closeTag) {
+      depth++;
+      pos = openTag + 4;
+    } else {
+      depth--;
+      if (depth === 0) {
+        endIdx = closeTag;
+        break;
+      }
+      pos = closeTag + 6;
+    }
+  }
+
+  if (endIdx === -1) return '';
+
+  const inner = html.substring(afterStart + 1, endIdx);
+
+  const contentDivs = inner.match(/<div[^>]*class="[^"]*em-mb-4[^"]*"[^>]*>([\s\S]*?)<\/div>/gis);
+  if (contentDivs && contentDivs.length > 0) {
+    let result = '';
+    for (const div of contentDivs) {
+      const cleaned = cleanHtml(div);
+      if (cleaned.length > 10) {
+        result += cleaned + ' ';
+      }
+    }
+    if (result.trim().length > 0) {
+      return result.trim();
+    }
+  }
+
+  const paragraphs = inner.match(/<p[^>]*>([\s\S]*?)<\/p>/gis);
+  if (paragraphs && paragraphs.length > 0) {
+    let result = '';
+    for (const p of paragraphs) {
+      const cleaned = cleanHtml(p);
+      if (cleaned.length > 10) {
+        result += cleaned + ' ';
+      }
+    }
+    if (result.trim().length > 0) {
+      return result.trim();
+    }
+  }
+
+  const emMatch = inner.match(/<em>([\s\S]*?)<\/em>/i);
+  if (emMatch) {
+    return cleanHtml(emMatch[1]);
+  }
+
+  return cleanHtml(inner);
 }
 
 async function fetchVerse(chapter: number, verse: number): Promise<VerseData> {
   const url = `https://vedabase.io/en/library/bg/${chapter}/${verse}/`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch verse: ${response.status}`);
-    }
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; BoltApp/1.0)',
+      'Accept': 'text/html,application/xhtml+xml',
+    },
+  });
 
-    const html = await response.text();
-
-    let sanskrit = extractSection(html, 'verse');
-    if (!sanskrit) {
-      const versePattern = /<div[^>]*class="[^"]*verse[^"]*"[^>]*>\s*<p[^>]*>(.*?)<\/p>/is;
-      const verseMatch = html.match(versePattern);
-      if (verseMatch) {
-        sanskrit = cleanHtml(verseMatch[1]);
-      }
-    }
-
-    let translation = extractSection(html, 'translation');
-    if (!translation) {
-      const translationPattern = /<div[^>]*class="[^"]*translation[^"]*"[^>]*>\s*<p[^>]*>(.*?)<\/p>/is;
-      const transMatch = html.match(translationPattern);
-      if (transMatch) {
-        translation = cleanHtml(transMatch[1]);
-      }
-    }
-
-    let purport = '';
-    const purportPattern = /<div[^>]*class="[^"]*purport[^"]*"[^>]*>(.*?)<\/div>/is;
-    const purportMatch = html.match(purportPattern);
-    if (purportMatch && purportMatch[1]) {
-      const purportHtml = purportMatch[1];
-      const paragraphs = purportHtml.match(/<p[^>]*>(.*?)<\/p>/gis);
-
-      if (paragraphs && paragraphs.length > 0) {
-        let fullPurport = '';
-        for (let i = 0; i < Math.min(3, paragraphs.length); i++) {
-          const cleaned = cleanHtml(paragraphs[i]);
-          if (cleaned.length > 20) {
-            fullPurport += cleaned + ' ';
-          }
-        }
-        purport = fullPurport.trim();
-
-        if (purport.length > 600) {
-          purport = purport.substring(0, 600);
-          const lastSpace = purport.lastIndexOf(' ');
-          if (lastSpace > 500) {
-            purport = purport.substring(0, lastSpace) + '...';
-          } else {
-            purport = purport + '...';
-          }
-        }
-      }
-    }
-
-    if (!sanskrit && !translation) {
-      const bodyMatch = html.match(/<body[^>]*>(.*?)<\/body>/is);
-      if (bodyMatch) {
-        const textContent = cleanHtml(bodyMatch[1]);
-        const lines = textContent.split('\n').filter(line => line.length > 30 && line.length < 300);
-
-        if (lines.length >= 2) {
-          sanskrit = lines[0];
-          translation = lines[1];
-        }
-      }
-    }
-
-    if (!sanskrit) {
-      sanskrit = `Chapter ${chapter}, Verse ${verse}`;
-    }
-
-    if (!translation) {
-      translation = `Verse ${chapter}.${verse} from the Bhagavad-gītā. Visit the source link below for the full text.`;
-    }
-
-    if (!purport) {
-      purport = `This verse from Chapter ${chapter} of the Bhagavad-gītā contains profound spiritual wisdom. Please visit Vedabase.io for the complete translation and commentary.`;
-    }
-
-    return {
-      chapter,
-      verse,
-      sanskrit,
-      translation,
-      purport,
-      url,
-    };
-  } catch (error) {
-    console.error("Error fetching verse:", error);
-    throw error;
+  if (!response.ok) {
+    throw new Error(`Failed to fetch verse: ${response.status}`);
   }
+
+  const html = await response.text();
+
+  let sanskrit = extractSection(html, 'av-verse_text');
+  sanskrit = stripHeading(sanskrit, 'Verse text');
+
+  let translation = extractSection(html, 'av-translation');
+  translation = stripHeading(translation, 'Translation');
+
+  let purport = extractSection(html, 'av-purport');
+  purport = stripHeading(purport, 'Purport');
+
+  if (purport.length > 600) {
+    purport = purport.substring(0, 600);
+    const lastSpace = purport.lastIndexOf(' ');
+    if (lastSpace > 500) {
+      purport = purport.substring(0, lastSpace) + '...';
+    } else {
+      purport = purport + '...';
+    }
+  }
+
+  if (!sanskrit) {
+    sanskrit = `Chapter ${chapter}, Verse ${verse}`;
+  }
+
+  if (!translation) {
+    translation = `Verse ${chapter}.${verse} from the Bhagavad-gītā. Visit the source link below for the full text.`;
+  }
+
+  if (!purport) {
+    purport = `This verse from Chapter ${chapter} of the Bhagavad-gītā contains profound spiritual wisdom. Please visit Vedabase.io for the complete translation and commentary.`;
+  }
+
+  return {
+    chapter,
+    verse,
+    sanskrit,
+    translation,
+    purport,
+    url,
+  };
 }
 
 Deno.serve(async (req: Request) => {
@@ -160,15 +190,32 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const verseData = await fetchVerse(chapter, verse);
+    try {
+      const verseData = await fetchVerse(chapter, verse);
 
-    return new Response(
-      JSON.stringify(verseData),
-      {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
-    );
+      return new Response(
+        JSON.stringify(verseData),
+        {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    } catch {
+      return new Response(
+        JSON.stringify({
+          chapter,
+          verse,
+          sanskrit: `Chapter ${chapter}, Verse ${verse}`,
+          translation: `Verse ${chapter}.${verse} from the Bhagavad-gītā. Visit the source link below for the full text.`,
+          purport: `This verse from Chapter ${chapter} of the Bhagavad-gītā contains profound spiritual wisdom. Please visit Vedabase.io for the complete translation and commentary.`,
+          url: `https://vedabase.io/en/library/bg/${chapter}/${verse}/`,
+        }),
+        {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
   } catch (error) {
     console.error("Error:", error);
     return new Response(

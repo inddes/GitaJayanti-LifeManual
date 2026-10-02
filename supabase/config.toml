@@ -1,0 +1,2 @@
+[functions.fetch-bg-verse]
+verify_jwt = true
