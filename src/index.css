@@ -22,6 +22,20 @@
   .glass-effect {
     @apply bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20;
   }
+
+  .lm-focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-spiritual-gold focus-visible:ring-offset-2 focus-visible:ring-offset-spiritual-cream;
+  }
+}
+
+@layer base {
+  a, button {
+    @apply outline-none;
+  }
+
+  a:focus-visible, button:focus-visible {
+    @apply ring-2 ring-spiritual-gold ring-offset-2 ring-offset-spiritual-cream rounded-sm;
+  }
 }
 
 .chat-widget-button {
