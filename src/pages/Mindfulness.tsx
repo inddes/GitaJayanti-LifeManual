@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BookOpen, Heart, Search } from 'lucide-react';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
@@ -9,10 +10,22 @@ import { gitaVerses as sampleVerses, type GitaVerse } from '../data/gitaVerses';
 
 export const Mindfulness: React.FC = () => {
   const { t } = useLanguage();
+  const [searchParams] = useSearchParams();
   const [selectedVerse, setSelectedVerse] = useState<GitaVerse | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const heroRef = useScrollAnimation();
   const versesRef = useScrollAnimation();
+
+  useEffect(() => {
+    const chapterParam = searchParams.get('chapter');
+    const verseParam = searchParams.get('verse');
+    if (chapterParam && verseParam) {
+      const chapter = parseInt(chapterParam, 10);
+      const verse = parseInt(verseParam, 10);
+      const match = sampleVerses.find(v => v.chapter === chapter && v.verse === verse);
+      if (match) setSelectedVerse(match);
+    }
+  }, [searchParams]);
 
   const filteredVerses = sampleVerses.filter(verse =>
     verse.translation.toLowerCase().includes(searchTerm.toLowerCase()) ||
